@@ -1,0 +1,1 @@
+export const FETCH_CAKES = 'FETCH_CAKES';
