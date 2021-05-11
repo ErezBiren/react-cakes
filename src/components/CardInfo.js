@@ -1,4 +1,5 @@
 import React from "react";
+import BuyArea from "./BuyArea";
 import './CardInfo.css';
 
 export default function CardInfo({ cakeName,price }) {
@@ -6,8 +7,7 @@ export default function CardInfo({ cakeName,price }) {
     <div class="card_info">
       <h2> { cakeName  } </h2>
       <h4>  סוכר, גבינה    </h4>
-      <h3> שח { price }   </h3>
-      <button>הוספה לעגלה</button>
+     <BuyArea price={price}/>
     </div>
   );
 }
