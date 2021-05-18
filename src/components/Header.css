@@ -1,6 +1,14 @@
-.header_container{
-  background-image:url("https://lh4.googleusercontent.com/gkDcDaHNE58Wag1386iuL84A_EB3FSPyX88AnMuCg4E_AY_4Cn3MGC3ZcuM20w0WSDjf7H97_doxIMHHKtflDKIvurPDXpcmIN7o8KkH=s1080");
+.header_container {
+  background-image: url("/src/assets/mainCake.jpg");
   height: 50vh;
   background-repeat: no-repeat, repeat;
-  background-size: cover
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+h1 {
+  color: white;
+  font-size: 3em;
 }

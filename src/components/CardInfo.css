@@ -1,6 +1,6 @@
 .card_info {
   height: 50%;
-  margin-right: 30px;
+  
 }
 
 .card_info > h2,
@@ -10,25 +10,12 @@ h4 {
 }
 
 .card_info > h2 {
-  margin-top: 15px;
-}
-
-.card_info > h3 {
-  margin-top: 35px;
-  color: var(--pink);
+  margin-top: 30px;
 }
 
 .card_info > h4 {
   margin-top: 5px;
-  color: gray;
+  color: rgb(192, 189, 189);
 }
 
-.card_info > button {
-  background-color: var(--pink);
-  border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 5px 15px;
-  border-radius: 20px;
-}
+
