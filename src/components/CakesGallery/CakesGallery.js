@@ -10,7 +10,9 @@ export default function Main() {
     <div class="CakesGallery_container">
       {cakes &&
         cakes.cakes.map((d) => (
-          <CakeCard cakeName={d.name} price={d.price} cakeId={d.id} />
+          <li key={d}>
+            <CakeCard cakeName={d.name} price={d.price} cakeId={d.id} />
+          </li>
         ))}
     </div>
   );
