@@ -6,7 +6,7 @@ export const initialState = {
     { id: 2, name: "1שוקולד", price: 150 },
     { id: 3, name: "2קצפת", price: 50 },
   ],
-  selectedCakeId: 2,
+  selectedCakeId: { id: 2, name: "1שוקולד", price: 150 },
   error: false,
 };
 
@@ -19,7 +19,7 @@ export const cakesSlice = createSlice({
       state.cakes = [...state.cakes, action.payload];
     },
     editCake: (state, action) => {
-      state.selectedCakeId = action.payload;
+      state.selectedCakeId = state.cakes.filter((cake) => cake.id == action.payload.cakeId)
     },
     deleteCake: (state, action) => {
       state.cakes = [

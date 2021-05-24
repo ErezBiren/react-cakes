@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cakesReducer from "./cakesReducer"
+import cakesReducer from "./cakesSlice"
 
 export default configureStore({
   reducer: {

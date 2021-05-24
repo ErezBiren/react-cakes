@@ -1,5 +1,5 @@
 import React from "react";
-import cakeTemplate from "./../../assets/cakeTemplate.jpg";
+// import cakeTemplate from "./../../../assets/cakeTemplate.jpg";
 import CardInfo from "./CardInfo";
 import "./CakeCard.css";
 import TaskbarIcons from "./TaskbarIcons";
@@ -10,7 +10,7 @@ export default function CakeCard({ cakeName, price, cakeId }) {
       <div class="taksbar_wrapper">
       <TaskbarIcons cakeId={cakeId} />
       </div>
-      <img src={cakeTemplate} />
+      {/* <img src={cakeTemplate} /> */}
       <CardInfo cakeName={cakeName} price={price} />
     </div>
   );
