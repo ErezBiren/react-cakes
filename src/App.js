@@ -10,7 +10,7 @@ export default function App() {
     <div>
       <Header />
       <Main />
-      <CakeForm />
+      {/* <CakeForm /> */}
     </div>
   );
 }

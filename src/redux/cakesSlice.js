@@ -19,7 +19,9 @@ export const cakesSlice = createSlice({
       state.cakes = [...state.cakes, action.payload];
     },
     editCake: (state, action) => {
-      state.selectedCakeId = state.cakes.filter((cake) => cake.id == action.payload.cakeId)
+      state.selectedCakeId = state.cakes.filter(
+        (cake) => cake.id == action.payload.cakeId
+      );
     },
     deleteCake: (state, action) => {
       state.cakes = [

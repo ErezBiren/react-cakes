@@ -1,6 +1,5 @@
 .card_info {
-  height: 50%;
-  
+  margin-right: 15px;
 }
 
 .card_info > h2,
@@ -10,12 +9,10 @@ h4 {
 }
 
 .card_info > h2 {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .card_info > h4 {
   margin-top: 5px;
   color: rgb(192, 189, 189);
 }
-
-
