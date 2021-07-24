@@ -48,7 +48,7 @@ function CakeForm() {
   const sendCakeData = async () => {
     console.log(JSON.stringify(cakeData));
 
-    const response = await fetch("http://localhost:5000", {
+    const response = await fetch("http://localhost:5000/cakes", {
       method: "PUT",
       body: JSON.stringify(cakeData),
     });
