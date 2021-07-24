@@ -3,6 +3,9 @@ import React from "react";
 import BuyArea from "./BuyArea";
 import "./CardInfo.css";
 
+
+
+
 export default function CardInfo({ cakeName, price, description }) {
   return (
     <div class="card_info">
