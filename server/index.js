@@ -1,5 +1,4 @@
 import express from "express";
-//import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import cakesRoutes from "./routes/cakes.js";
@@ -8,6 +7,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
+
+// todo: check why without this line the req.body is empty
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
 app.use(cors());
 

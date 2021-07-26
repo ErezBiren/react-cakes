@@ -6,6 +6,7 @@ import firebase from "firebase";
 
 function CakeForm() {
   const [cakeData, setCakeData] = useState({
+    id: "",
     name: "",
     price: 0,
     imgSrc: "",
@@ -13,22 +14,44 @@ function CakeForm() {
   });
   const dispatch = useDispatch();
 
-  const cake = useSelector((state) => state.cakes.selectedCake);
+  const selectedCakeID = useSelector((state) => state.cakes.selectedCakeID);
+
+  const cake = useSelector((state) =>
+    state.cakes.cakes.find((cake) => cake.id == selectedCakeID)
+  );
 
   useEffect(() => {
     if (cake) {
-      setCakeData(cake);
+      setCakeData({
+        id: cake.id ? cake.description : 0,
+        name: cake.name ? cake.description : "",
+        price: cake.price ? cake.description : 0,
+        imgSrc: cake.imgSrc ? cake.description : "",
+        description: cake.description ? cake.description : "",
+      });
+      console.log("cakeData: " + JSON.stringify(cakeData));
     }
-  }, [cake]);
+  }, [selectedCakeID]);
 
   const handleChange = (e) => {
-    setCakeData({ [e.target.name]: e.target.value });
+    setCakeData({ ...cakeData, [e.target.name]: e.target.value });
+  };
+
+  const clear = () => {
+    setCakeData({
+      id: "",
+      name: "",
+      price: 0,
+      imgSrc: "",
+      description: "",
+    });
   };
 
   const handleSumbit = (e) => {
     e.preventDefault();
 
-    if (cake) {
+    if (cakeData.id) {
+      console.log("update cake");
       dispatch(cakesActions.updateCake(cakeData));
     } else {
       // db.collection("cakes").add({
@@ -43,51 +66,56 @@ function CakeForm() {
 
       dispatch(cakesActions.addCake(cakeData));
     }
+    clear();
   };
 
   const sendCakeData = async () => {
     console.log(JSON.stringify(cakeData));
 
-    const response = await fetch("http://localhost:5000/cakes", {
-      method: "PUT",
-      body: JSON.stringify(cakeData),
-    });
+    const sendRequest = async () => {
+      const response = await fetch("http://localhost:5000/cakes", {
+        method: "PUT", // todo: check why not put?
+        body: JSON.stringify(cakeData),
+      });
 
-    if (!response.ok) {
-      throw new Error("sending new data failed.");
-    }
+      if (!response.ok) {
+        throw new Error("sending new data failed.");
+      }
+    };
 
-    const responseData = await response.JSON();
+    await sendRequest();
   };
 
   return (
-    <form onSubmit={handleSumbit}>
-      <input
-        name="name"
-        value={cakeData && cakeData.name}
-        placeholder="Title"
-        onChange={handleChange}
-      />
-      <input
-        name="price"
-        value={cakeData && cakeData.price}
-        placeholder="Price"
-        onChange={handleChange}
-      />
-      <input
-        name="description"
-        value={cakeData && cakeData.description}
-        placeholder="description"
-        onChange={handleChange}
-      />
-      <input
-        name="imgSrc"
-        value={cakeData && cakeData.imgSrc}
-        placeholder="imgSrc"
-        onChange={handleChange}
-      />
-      <input type="submit" value="Submit" />
-    </form>
+    <div>
+      <form onSubmit={handleSumbit}>
+        <input
+          name="name"
+          value={cakeData && cakeData.name}
+          placeholder="name"
+          onChange={handleChange}
+        />
+        <input
+          name="price"
+          value={cakeData && cakeData.price}
+          placeholder="price"
+          onChange={handleChange}
+        />
+        <input
+          name="description"
+          value={cakeData && cakeData.description}
+          placeholder="description"
+          onChange={handleChange}
+        />
+        <input
+          name="imgSrc"
+          value={cakeData && cakeData.imgSrc}
+          placeholder="imgSrc"
+          onChange={handleChange}
+        />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
   );
 }
 

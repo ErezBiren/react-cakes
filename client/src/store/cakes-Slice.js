@@ -5,11 +5,17 @@ const fetchCakes = createAsyncThunk();
 
 export const initialState = {
   cakes: [
-    { id: 1, name: " 1קצפת", price: 650, description: "aaa", imgSrc:"../../assets/cake1.jpg" },
-    { id: 2, name: "1שוקולד", price: 150 },
-    { id: 3, name: "2קצפת", price: 50 },
+    // {
+    //   id: 1,
+    //   name: " 1קצפת",
+    //   price: 650,
+    //   description: "aaa",
+    //   imgSrc: "../../assets/cake1.jpg",
+    // },
+    // { id: 2, name: "1שוקולד", price: 150 },
+    // { id: 3, name: "2קצפת", price: 50 },
   ],
-  selectedCake: 0,
+  selectedCakeID: 0,
 };
 
 export const cakesSlice = createSlice({
@@ -20,12 +26,13 @@ export const cakesSlice = createSlice({
       state.cakes = [...state.cakes, action.payload];
     },
     updateCake: (state, action) => {
-      state.cakes = [...state.cakes.filter((cake) => cake.id !== action.payload), action.payload];
+      state.cakes = [
+        ...state.cakes.filter((cake) => cake.id !== action.payload),
+        action.payload,
+      ];
     },
     editCake: (state, action) => {
-      state.selectedCake = state.cakes.filter(
-        (cake) => cake.id === action.payload
-      );
+      state.selectedCakeID = action.payload;
     },
     deleteCake: (state, action) => {
       state.cakes = [

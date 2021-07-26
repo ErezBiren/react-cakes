@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 
 router.get("/", getCakes);
-router.post("/", createCake);
+router.put("/", createCake);
 // router.get('/:id', getPost);
 // router.patch('/:id', updatePost);
 // router.delete('/:id', deletePost);
