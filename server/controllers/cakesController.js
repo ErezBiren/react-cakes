@@ -14,13 +14,13 @@ export const getCakes = async (req, res) => {
 };
 
 export const createCake = async (req, res) => {
-  console.log(req.body);
+  console.log("2" + JSON.stringify(req.body));
 
   const { name, price } = req.body;
 
   const newCakeMessage = new CakeMessage({
-    name,
-    price,
+    name: "name",
+    price: 666,
   });
 
   try {

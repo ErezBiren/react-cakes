@@ -1,20 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { db } from "../firebase";
 
 const fetchCakes = createAsyncThunk();
 
 export const initialState = {
-  cakes: [
-    // {
-    //   id: 1,
-    //   name: " 1קצפת",
-    //   price: 650,
-    //   description: "aaa",
-    //   imgSrc: "../../assets/cake1.jpg",
-    // },
-    // { id: 2, name: "1שוקולד", price: 150 },
-    // { id: 3, name: "2קצפת", price: 50 },
-  ],
+  cakes: [],
   selectedCakeID: 0,
 };
 
@@ -23,13 +12,12 @@ export const cakesSlice = createSlice({
   initialState,
   reducers: {
     addCake: (state, action) => {
-      state.cakes = [...state.cakes, action.payload];
+      state.cakes.push(action.payload);
     },
     updateCake: (state, action) => {
-      state.cakes = [
-        ...state.cakes.filter((cake) => cake.id !== action.payload),
-        action.payload,
-      ];
+      state.cakes = state.cakes.map((cake) =>
+        cake.id === action.payload.id ? action.payload : cake
+      );
     },
     editCake: (state, action) => {
       state.selectedCakeID = action.payload;
@@ -38,6 +26,13 @@ export const cakesSlice = createSlice({
       state.cakes = [
         ...state.cakes.filter((cake) => cake.id !== action.payload),
       ];
+    },
+    replaceCakes: (state, action) => {
+      console.log(JSON.stringify(action.payload));
+
+      if (action.payload && action.payload.length !== 0) {
+        state.cakes = action.payload;
+      }
     },
   },
 });

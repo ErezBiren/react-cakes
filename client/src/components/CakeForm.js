@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cakesActions } from "../store/cakes-Slice";
-import { db } from "./../firebase";
-import firebase from "firebase";
+import { sendCakeData, updateCakeData } from "../store/cakes-actions";
 
 function CakeForm() {
   const [cakeData, setCakeData] = useState({
@@ -17,19 +16,20 @@ function CakeForm() {
   const selectedCakeID = useSelector((state) => state.cakes.selectedCakeID);
 
   const cake = useSelector((state) =>
-    state.cakes.cakes.find((cake) => cake.id == selectedCakeID)
+    state.cakes.cakes
+      ? state.cakes.cakes.find((cake) => cake.id == selectedCakeID)
+      : null
   );
 
   useEffect(() => {
     if (cake) {
       setCakeData({
-        id: cake.id ? cake.description : 0,
-        name: cake.name ? cake.description : "",
-        price: cake.price ? cake.description : 0,
-        imgSrc: cake.imgSrc ? cake.description : "",
+        id: cake.id ? cake.id : 0,
+        name: cake.name ? cake.name : "",
+        price: cake.price ? cake.price : 0,
+        imgSrc: cake.imgSrc ? cake.imgSrc : "",
         description: cake.description ? cake.description : "",
       });
-      console.log("cakeData: " + JSON.stringify(cakeData));
     }
   }, [selectedCakeID]);
 
@@ -52,38 +52,18 @@ function CakeForm() {
 
     if (cakeData.id) {
       console.log("update cake");
+
+      dispatch(updateCakeData(cakeData));
+
       dispatch(cakesActions.updateCake(cakeData));
     } else {
-      // db.collection("cakes").add({
-      //   name: cakeData.name,
-      //   price: cakeData.price,
-      //   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      //   description: cakeData.description,
-      //   imgSrc: cakeData.imgSrc,
-      // });
+      console.log("addcake");
+      dispatch(sendCakeData(cakeData));
 
-      sendCakeData();
+      
 
-      dispatch(cakesActions.addCake(cakeData));
+      clear();
     }
-    clear();
-  };
-
-  const sendCakeData = async () => {
-    console.log(JSON.stringify(cakeData));
-
-    const sendRequest = async () => {
-      const response = await fetch("http://localhost:5000/cakes", {
-        method: "PUT", // todo: check why not put?
-        body: JSON.stringify(cakeData),
-      });
-
-      if (!response.ok) {
-        throw new Error("sending new data failed.");
-      }
-    };
-
-    await sendRequest();
   };
 
   return (
@@ -115,6 +95,7 @@ function CakeForm() {
         />
         <input type="submit" value="Submit" />
       </form>
+      <button onClick={clear}>Clear Form</button>
     </div>
   );
 }

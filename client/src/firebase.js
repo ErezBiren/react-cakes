@@ -3,13 +3,12 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDrRAWZfTe4UyQ7XbzTT6IRkHHMS2RgPfQ",
-  authDomain: "saikai-156cf.firebaseapp.com",
-  projectId: "saikai-156cf",
-  storageBucket: "saikai-156cf.appspot.com",
-  messagingSenderId: "30978760579",
-  appId: "1:30978760579:web:caeb902d11165c07ede0b6",
-  measurementId: "G-J4F6WP8KFP",
+  apiKey: "AIzaSyCrq16ohJFuDuMhFDQt9cOgNHuisQyfgAc",
+  authDomain: "cakes-75551.firebaseapp.com",
+  projectId: "cakes-75551",
+  storageBucket: "cakes-75551.appspot.com",
+  messagingSenderId: "835193487301",
+  appId: "1:835193487301:web:1788ddc7861a7fda2295ac",
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
