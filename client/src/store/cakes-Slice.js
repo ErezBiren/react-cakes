@@ -12,7 +12,10 @@ export const cakesSlice = createSlice({
   initialState,
   reducers: {
     addCake: (state, action) => {
-      state.cakes.push(action.payload);
+      const exists = state.cakes.some((cake) => cake.id === action.payload);
+      if (!exists) {
+        state.cakes.push(action.payload);
+      }
     },
     updateCake: (state, action) => {
       state.cakes = state.cakes.map((cake) =>

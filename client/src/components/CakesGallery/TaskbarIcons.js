@@ -2,6 +2,7 @@ import React from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { cakesActions } from "../../store/cakes-Slice";
+import { deleteCakeData } from "../../store/cakes-actions";
 import { useDispatch } from "react-redux";
 
 function TaskbarIcons({ cakeId }) {
@@ -9,7 +10,7 @@ function TaskbarIcons({ cakeId }) {
 
   const handleDelete = (e) => {
     if (confirm("Are you sure you want to delete this cake?")) {
-      dispatch(cakesActions.deleteCake(cakeId));
+      dispatch(deleteCakeData(cakeId));
     }
   };
 

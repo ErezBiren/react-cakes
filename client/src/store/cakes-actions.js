@@ -3,6 +3,16 @@ import { db } from "./../firebase";
 
 const isFireBase = true;
 
+export const deleteCakeData = (cakeId) => {
+  if (isFireBase) {
+    return async (dispatch) => {
+      db.collection("cakes").doc(cakeId).delete();
+      dispatch(cakesActions.deleteCake(cakeId));
+    };
+  } else {
+  }
+};
+
 export const updateCakeData = (cake) => {
   if (isFireBase) {
     return async (dispatch) => {
@@ -61,7 +71,6 @@ export const fetchCakeData = () => {
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             const cake = { id: doc.id, ...doc.data() };
-            //console.log("****" + JSON.stringify(cake));
             dispatch(cakesActions.addCake(cake));
           });
         });

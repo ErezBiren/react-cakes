@@ -51,17 +51,10 @@ function CakeForm() {
     e.preventDefault();
 
     if (cakeData.id) {
-      console.log("update cake");
-
       dispatch(updateCakeData(cakeData));
-
       dispatch(cakesActions.updateCake(cakeData));
     } else {
-      console.log("addcake");
       dispatch(sendCakeData(cakeData));
-
-      
-
       clear();
     }
   };
