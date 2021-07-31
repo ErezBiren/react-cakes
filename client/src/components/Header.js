@@ -1,22 +1,50 @@
 import React from "react";
 import "./Header.css";
-import CakeForm from "./CakeForm";
-import { authActions } from "../store/auth-Slice";
-import { useSelector, useDispatch } from "react-redux";
+import { ReactComponent as LoginIcon } from "../assets/icons/login.svg";
 
 export default function Header() {
-  const dispatch = useDispatch();
-
-  const isAdmin = useSelector((state) => state.admin.isAdmin);
-
   return (
-    <div class="header_container">
-      <button onClick={() => dispatch(authActions.toggleAdmin())}>
-        is Admin
-      </button>
-      {isAdmin && <CakeForm />}
-      <h1>העוגות של דידי</h1>
-      <h1>055-1234567</h1>
-    </div>
+    <section id="header">
+      <div class="header">
+        <div class="nav-bar">
+          <div class="brand">
+            <a href="#hero">{/* <h1>עדידי עוגות</h1> */}</a>
+          </div>
+          <div class="nav-list">
+            <div class="hamburger">
+              <div class="bar"></div>
+            </div>
+            <ul>
+              <li>
+                <a href="#home" data-after="Home">
+                  בית
+                </a>
+              </li>
+              <li>
+                <a href="#catalog" data-after="Catalog">
+                  קטלוג
+                </a>
+              </li>
+              <li>
+                <a href="#projects" data-after="Projects">
+                  סדנאות
+                </a>
+              </li>
+              <li>
+                <a href="#about" data-after="About">
+                  קצת עלי
+                </a>
+              </li>
+              <li>
+                <a href="#contact" data-after="Contact">
+                  צרו קשר
+                </a>
+              </li>
+            </ul>
+          </div>
+          <LoginIcon className="login_icon" />
+        </div>
+      </div>
+    </section>
   );
 }

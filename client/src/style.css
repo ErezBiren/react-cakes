@@ -1,15 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+@font-face {
+  font-family: DanaYadAlefAlefAlef-Normal;
+  src: url("assets/fonts/DanaYadAlefAlefAlef/DanaYadAlefAlefAlef-Normal.otf")
+    format("opentype");
+}
 
 * {
   margin: 0px;
-  font-family: "Rubik", sans-serif;
+  font-family: "DanaYadAlefAlefAlef-Normal", sans-serif;
   direction: rtl;
 }
 
 body {
-  background-color: rgb(247, 204, 231);
+
 }
 
 :root {
   --pink: rgb(233, 128, 193);
+  --secondColor: crimson;
+}
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

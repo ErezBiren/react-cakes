@@ -1,0 +1,61 @@
+.home_container {
+  height: 100vh;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.cake_icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+p {
+  font-size: 2em;
+  margin-top: 30px;
+}
+
+.title_container {
+  width: 50vw;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.title_inner_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.home_main_cake_container {
+  position: relative;
+}
+
+.home_main_cake {
+  object-fit: cover;
+  width: 50vw;
+  height: 100vh;
+}
+/* .home_main_cake_fade_effect {
+  width: 50vw;
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, rgba(255, 0, 0, 0), rgba(255, 255, 255, 1));
+  float: left;
+  position: absolute;
+} */
+
+/* Media Query For Tablet */
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 3em;
+  }
+}
