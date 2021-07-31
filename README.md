@@ -1,3 +1,10 @@
 # react-cakes
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-cakes)
+### Built With
+
+- [React](https://reactjs.org/)
+- [Redux]
+- [TypeScript]
+- [Firebase](https://firebase.google.com/)
+- [CssModules]
+ 
