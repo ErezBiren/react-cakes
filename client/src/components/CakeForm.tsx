@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, SyntheticEvent,ChangeEvent  } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cakesActions } from "../store/cakes-Slice";
 import { sendCakeData, updateCakeData } from "../store/cakes-actions";
+import {RootState} from "../store/store"
 
 function CakeForm() {
   const [cakeData, setCakeData] = useState({
@@ -13,9 +14,9 @@ function CakeForm() {
   });
   const dispatch = useDispatch();
 
-  const selectedCakeID = useSelector((state) => state.cakes.selectedCakeID);
+  const selectedCakeID : string = useSelector((state : RootState) => state.cakes.selectedCakeID);
 
-  const cake = useSelector((state) =>
+  const cake = useSelector((state : RootState) =>
     state.cakes.cakes
       ? state.cakes.cakes.find((cake) => cake.id == selectedCakeID)
       : null
@@ -24,7 +25,7 @@ function CakeForm() {
   useEffect(() => {
     if (cake) {
       setCakeData({
-        id: cake.id ? cake.id : 0,
+        id: cake.id ? cake.id : "",
         name: cake.name ? cake.name : "",
         price: cake.price ? cake.price : 0,
         imgSrc: cake.imgSrc ? cake.imgSrc : "",
@@ -33,7 +34,7 @@ function CakeForm() {
     }
   }, [selectedCakeID]);
 
-  const handleChange = (e) => {
+  const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
     setCakeData({ ...cakeData, [e.target.name]: e.target.value });
   };
 
@@ -47,7 +48,7 @@ function CakeForm() {
     });
   };
 
-  const handleSumbit = (e) => {
+  const handleSumbit = (e : SyntheticEvent) => {
     e.preventDefault();
 
     if (cakeData.id) {

@@ -1,11 +1,13 @@
-import { cakesActions } from "./cakes-Slice";
-import { db } from "./../firebase";
+import { cakesActions, CakeData } from "./cakes-Slice";
+import { db } from "../firebase";
+import { Dispatch } from "react";
+import { AppDispatch } from "./store";
 
 const isFireBase = true;
 
-export const deleteCakeData = (cakeId) => {
+export const deleteCakeData = (cakeId : string) => {
   if (isFireBase) {
-    return async (dispatch) => {
+    return async (dispatch: AppDispatch) => {
       db.collection("cakes").doc(cakeId).delete();
       dispatch(cakesActions.deleteCake(cakeId));
     };
@@ -13,18 +15,18 @@ export const deleteCakeData = (cakeId) => {
   }
 };
 
-export const updateCakeData = (cake) => {
+export const updateCakeData = (cake : CakeData) => {
   if (isFireBase) {
-    return async (dispatch) => {
+    return async (dispatch: AppDispatch) => {
       db.collection("cakes").doc(cake.id).update(cake);
     };
   } else {
   }
 };
 
-export const sendCakeData = (cake) => {
+export const sendCakeData = (cake : CakeData) => {
   if (isFireBase) {
-    return async (dispatch) => {
+    return async (dispatch: AppDispatch) => {
       db.collection("cakes")
         .add({
           name: cake.name,
@@ -39,7 +41,7 @@ export const sendCakeData = (cake) => {
         });
     };
   } else
-    return async (dispatch) => {
+    return async (dispatch: AppDispatch) => {
       console.log(JSON.stringify(cake));
 
       const sendRequest = async () => {
@@ -65,7 +67,7 @@ export const sendCakeData = (cake) => {
 
 export const fetchCakeData = () => {
   if (isFireBase) {
-    return async (dispatch) => {
+    return async (dispatch : AppDispatch) => {
       db.collection("cakes")
         .get()
         .then((querySnapshot) => {
@@ -76,7 +78,7 @@ export const fetchCakeData = () => {
         });
     };
   } else {
-    return async (dispatch) => {
+    return async (dispatch: AppDispatch) => {
       const fetchData = async () => {
         const response = await fetch("http://localhost:5000/cakes");
 

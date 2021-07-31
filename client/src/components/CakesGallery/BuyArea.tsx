@@ -1,7 +1,7 @@
 import React from "react";
 import "./BuyArea.css";
 
-function BuyArea({ price }) {
+const BuyArea:React.FC<{price:number}> = ({ price }) => {
   return (
     <div className="buyArea_container">
       <h3> {price} ש"ח</h3>

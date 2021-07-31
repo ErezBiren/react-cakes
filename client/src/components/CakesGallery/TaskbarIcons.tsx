@@ -1,21 +1,21 @@
-import React from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { cakesActions } from "../../store/cakes-Slice";
 import { deleteCakeData } from "../../store/cakes-actions";
 import { useDispatch } from "react-redux";
+import React from "react";
 
-function TaskbarIcons({ cakeId }) {
+const TaskbarIcons: React.FC<{cakeId: string}> = ({cakeId}) => {
   const dispatch = useDispatch();
-
-  const handleDelete = (e) => {
+  
+  const handleDelete = () => {
     if (confirm("Are you sure you want to delete this cake?")) {
       dispatch(deleteCakeData(cakeId));
     }
   };
 
   return (
-    <div class="taskbar_contianer">
+    <div className="taskbar_contianer">
       <DeleteIcon htmlColor="pink" onClick={handleDelete} cursor="pointer" />
       <EditIcon
         htmlColor="pink"

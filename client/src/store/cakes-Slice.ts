@@ -1,23 +1,34 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const fetchCakes = createAsyncThunk();
+export type CakeData = {
+  name: string,
+  price : number,
+  id : string,
+  imgSrc : string,
+  description : string
+}
 
-export const initialState = {
+interface CakesState {
+  cakes: CakeData[],
+  selectedCakeID: string,
+}
+
+export const initialState : CakesState = {
   cakes: [],
-  selectedCakeID: 0,
+  selectedCakeID: "",
 };
 
 export const cakesSlice = createSlice({
   name: "cakes",
   initialState,
   reducers: {
-    addCake: (state, action) => {
+    addCake: (state : CakesState, action) => {
       const exists = state.cakes.some((cake) => cake.id === action.payload);
       if (!exists) {
         state.cakes.push(action.payload);
       }
     },
-    updateCake: (state, action) => {
+    updateCake: (state: CakesState, action) => {
       state.cakes = state.cakes.map((cake) =>
         cake.id === action.payload.id ? action.payload : cake
       );

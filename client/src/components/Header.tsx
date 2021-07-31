@@ -1,18 +1,17 @@
-import React from "react";
 import "./Header.css";
 import { ReactComponent as LoginIcon } from "../assets/icons/login.svg";
 
 export default function Header() {
   return (
     <section id="header">
-      <div class="header">
-        <div class="nav-bar">
-          <div class="brand">
+      <div className="header">
+        <div className="nav-bar">
+          <div className="brand">
             <a href="#hero">{/* <h1>עדידי עוגות</h1> */}</a>
           </div>
-          <div class="nav-list">
-            <div class="hamburger">
-              <div class="bar"></div>
+          <div className="nav-list">
+            <div className="hamburger">
+              <div className="bar"></div>
             </div>
             <ul>
               <li>
