@@ -4,7 +4,7 @@
 
 - [React](https://reactjs.org/)
 - [Redux]
-- [TypeScript]
+- [TypeScript](https://www.typescriptlang.org/)
 - [Firebase](https://firebase.google.com/)
 - [CssModules]
  
