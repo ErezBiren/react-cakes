@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import Admin from "./pages/Admin";
 import { useDispatch } from "react-redux";
 import "./style.css";
 import { fetchCakeData } from "./store/cakes-actions";
-import Homepage from "./pages/Homepage";
-import NotFound from "./pages/NotFound";
+import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import AuthPage from "./pages/AuthPage";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -21,13 +21,13 @@ export default function App() {
   return (
     <Switch>
       <Route path="/" exact>
-        <Homepage />
+        <HomePage />
       </Route>
       <Route path="/admin">
-        <Admin />
+        <AuthPage />
       </Route>
       <Route path="*">
-        <NotFound/>
+        <NotFoundPage/>
         </Route>
     </Switch>
   );
