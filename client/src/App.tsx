@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import Home from "./components/Home";
-import Header from "./components/Header";
-import About from "./components/About";
-import CakesGallery from "./components/CakesGallery/CakesGallery";
+import { useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
+import Admin from "./pages/Admin";
 import { useDispatch } from "react-redux";
 import "./style.css";
 import { fetchCakeData } from "./store/cakes-actions";
+import Homepage from "./pages/Homepage";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -19,11 +19,16 @@ export default function App() {
   }, []);
 
   return (
-    <div>
-      <Header />
-      <Home />
-      <CakesGallery />
-      <About />
-    </div>
+    <Switch>
+      <Route path="/" exact>
+        <Homepage />
+      </Route>
+      <Route path="/admin">
+        <Admin />
+      </Route>
+      <Route path="*">
+        <NotFound/>
+        </Route>
+    </Switch>
   );
 }

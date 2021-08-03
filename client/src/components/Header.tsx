@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Header.css";
 import { ReactComponent as LoginIcon } from "../assets/icons/login.svg";
 
@@ -41,7 +42,9 @@ export default function Header() {
               </li>
             </ul>
           </div>
-          <LoginIcon className="login_icon" />
+          <Link to="/admin">
+            <LoginIcon className="login_icon" />
+          </Link>
         </div>
       </div>
     </section>
