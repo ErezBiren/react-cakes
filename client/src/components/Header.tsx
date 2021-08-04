@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { ReactComponent as LoginIcon } from "../assets/icons/login.svg";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 export default function Header() {
+
+  const isLoggedIn = useSelector((state : RootState) => state.auth.isLoggedIn);
+
   return (
     <section id="header">
       <div className="header">
@@ -43,7 +48,7 @@ export default function Header() {
             </ul>
           </div>
           <Link to="/admin">
-            <LoginIcon className="login_icon" />
+            {!isLoggedIn && <LoginIcon className="login_icon" />}
           </Link>
         </div>
       </div>

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { stat } from "fs";
 
 interface AuthState {
   isAdmin: boolean,
   selectUser: number,
   token: string,
-  isLoggedIn: boolean
+  isLoggedIn: Boolean
 }
 
 export const initialState: AuthState = {
@@ -22,11 +23,12 @@ export const authSlice = createSlice({
       state.isAdmin = !state.isAdmin;
     },
     login: (state, action) => {
-      console.log(action.payload);
       state.token = action.payload;
+      state.isLoggedIn = true;
     },
     logout: (state) => {
       state.token = "";
+      state.isLoggedIn = false;
     }
   },
 });

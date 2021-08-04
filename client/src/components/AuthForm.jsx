@@ -2,8 +2,10 @@ import { useState, useRef, SyntheticEvent } from 'react';
 import { authActions } from "../store/auth-Slice";
 import classes from './AuthForm.module.css';
 import { useDispatch } from 'react-redux';
+import {useHistory } from 'react-router-dom';
 
 const AuthForm = () => {
+  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const dispatch = useDispatch();
@@ -62,6 +64,7 @@ const AuthForm = () => {
       })
       .then((data) => {
            dispatch(authActions.login(data.idToken));
+           history.push('/')
       })
       .catch((err) => {
         alert(err.message);
