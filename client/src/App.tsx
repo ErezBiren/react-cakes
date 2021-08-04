@@ -27,8 +27,8 @@ export default function App() {
         <AuthPage />
       </Route>
       <Route path="*">
-        <NotFoundPage/>
-        </Route>
+        <NotFoundPage />
+      </Route>
     </Switch>
   );
 }

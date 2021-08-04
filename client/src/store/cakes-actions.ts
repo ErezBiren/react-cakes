@@ -1,6 +1,5 @@
 import { cakesActions, CakeData } from "./cakes-Slice";
 import { db } from "../firebase";
-import { Dispatch } from "react";
 import { AppDispatch } from "./store";
 
 const isFireBase = true;

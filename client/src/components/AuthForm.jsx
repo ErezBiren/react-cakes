@@ -1,11 +1,15 @@
 import { useState, useRef, SyntheticEvent } from 'react';
+import { authActions } from "../store/auth-Slice";
 import classes from './AuthForm.module.css';
+import { useDispatch } from 'react-redux';
 
 const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const dispatch = useDispatch();
 
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -19,10 +23,16 @@ const AuthForm = () => {
 
     // optional: Add validation
 
+    setIsLoading(true);
+    let url;
     if (isLogin) {
+      url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.REACT_APP_FIREBASE_WEB_API_KEY;
+
     } else {
-      fetch(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBZhsabDexE9BhcJbGxnZ4DiRlrCN9xe24',
+      url =
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.REACT_APP_FIREBASE_WEB_API_KEY;
+    }
+      fetch(url,
         {
           method: 'POST',
           body: JSON.stringify({
@@ -35,28 +45,40 @@ const AuthForm = () => {
           },
         }
       ).then((res) => {
+        setIsLoading(false);
         if (res.ok) {
-          // ...
+          return res.json();
         } else {
           return res.json().then((data) => {
-            // show an error modal
-            console.log(data);
+            let errorMessage = 'Authentication failed!';
+            if (data && data.error && data.error.message) {
+              errorMessage = data.error.message;
+            }
+            
+            console.log(errorMessage);
+            throw new Error(errorMessage);
           });
         }
+      })
+      .then((data) => {
+           dispatch(authActions.login(data.idToken));
+      })
+      .catch((err) => {
+        alert(err.message);
       });
-    }
+    
   };
 
   return (
     <section className={classes.auth}>
-      <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
+      <h1>{isLogin ? 'התחברות' : 'הרשמה'}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor='email'>Your Email</label>
+          <label htmlFor='email'>דואר אלקטרוני</label>
           <input type='email' id='email' required ref={emailInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='password'>Your Password</label>
+          <label htmlFor='password'>סיסמא</label>
           <input
             type='password'
             id='password'
@@ -65,13 +87,13 @@ const AuthForm = () => {
           />
         </div>
         <div className={classes.actions}>
-          <button>{isLogin ? 'Login' : 'Create Account'}</button>
+          <button>{isLogin ? 'כניסה' : 'הרשמה'}</button>
           <button
             type='button'
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
-            {isLogin ? 'Create new account' : 'Login with existing account'}
+            {isLogin ? 'הרשמה חדשה' : 'כניסה עם משתמש קיים'}
           </button>
         </div>
       </form>
