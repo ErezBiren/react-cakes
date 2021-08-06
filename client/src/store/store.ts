@@ -6,7 +6,7 @@ import cartReducer from "./cart-Slice";
 const store = configureStore({
   reducer: {
     cakes: cakesReducer,
-    admin: authReducer,
+    auth: authReducer,
     // cart: cartReducer,
   },
 });

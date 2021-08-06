@@ -6,6 +6,7 @@ import { fetchCakeData } from "./store/cakes-actions";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AuthPage from "./pages/AuthPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ export default function App() {
       </Route>
       <Route path="/admin">
         <AuthPage />
+      </Route>
+      <Route path="/profile">
+        <ProfilePage />
       </Route>
       <Route path="*">
         <NotFoundPage />

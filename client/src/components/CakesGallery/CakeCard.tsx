@@ -12,7 +12,7 @@ export default function ({
   imgSrc,
   description,
 } : CakeData)  {
-  const isAdmin = useSelector((state : RootState) => state.admin.isAdmin);
+  const isAdmin = useSelector((state : RootState) => state.auth.isAdmin);
 
   return (
     <div className="CakeCard_container">

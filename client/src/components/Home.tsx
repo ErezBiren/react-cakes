@@ -13,7 +13,7 @@ import { RootState } from "../store/store";
 export default function HomePage() {
   const dispatch = useDispatch();
 
-  const isAdmin = useSelector((state : RootState) => state.admin.isAdmin);
+  const isAdmin = useSelector((state : RootState) => state.auth.isAdmin);
 
   return (
     <section id="home">
