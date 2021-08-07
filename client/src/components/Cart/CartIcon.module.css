@@ -1,0 +1,23 @@
+.container{
+  cursor: pointer;
+}
+.cartIcon {
+  width: 50;
+  height: 50;
+  position: absolute;
+}
+
+.totalQuantity {
+  margin-right: -5px;
+  margin-top: -5px;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

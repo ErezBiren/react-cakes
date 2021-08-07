@@ -11,7 +11,7 @@ interface AuthState {
 export const initialState: AuthState = {
   isAdmin: false,
   selectUser: 0,
-  token: "",
+  token: localStorage.getItem("token") || "",
   isLoggedIn: false,
 };
 

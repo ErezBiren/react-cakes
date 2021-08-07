@@ -1,26 +1,22 @@
 import CardInfo from "./CardInfo";
-import "./CakeCard.css";
+import styles from "./CakeCard.module.css";
 import TaskbarIcons from "./TaskbarIcons";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { CakeData } from "../../store/cakes-Slice";
 
-export default function ({
-  name,
-  price,
-  id:cakeId ,
-  imgSrc,
-  description,
-} : CakeData)  {
-  const isAdmin = useSelector((state : RootState) => state.auth.isAdmin);
+export default function (cakeData: CakeData) {
+  const isAdmin = useSelector((state: RootState) => state.auth.isAdmin);
 
   return (
-    <div className="CakeCard_container">
+    <div className={styles.CakeCard_container}>
       {isAdmin && (
-        <div className="taksbar_wrapper">{<TaskbarIcons cakeId={cakeId} />}</div>
+        <div className={styles.taksbar_wrapper}>
+          {<TaskbarIcons cakeId={cakeData.id} />}
+        </div>
       )}
-      {<img src={imgSrc} />}
-      <CardInfo cakeName={name} price={price} description={description} />
+      {<img src={cakeData.imgSrc} />}
+      <CardInfo cakeData={cakeData} />
     </div>
   );
 }

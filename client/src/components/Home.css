@@ -25,8 +25,9 @@ p {
 
 .title_container {
   width: 50vw;
+  margin-right: 130px;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }

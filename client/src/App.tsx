@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AuthPage from "./pages/AuthPage";
 import ProfilePage from "./pages/ProfilePage";
+import CartPage from "./pages/CartPage";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -24,11 +25,14 @@ export default function App() {
       <Route path="/" exact>
         <HomePage />
       </Route>
-      <Route path="/admin">
+      <Route path="/auth">
         <AuthPage />
       </Route>
       <Route path="/profile">
         <ProfilePage />
+      </Route>
+      <Route path="/cart">
+        <CartPage />
       </Route>
       <Route path="*">
         <NotFoundPage />

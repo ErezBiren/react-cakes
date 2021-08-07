@@ -1,13 +1,13 @@
-import "./About.css";
+import styles from "./About.module.css";
 import myImgSrc from "../assets/me.jpg";
 
-export default function About() {
+const About = () => {
   return (
     <section id="about">
-      <div className="about container">
-        <div className="col-right">
-          <h1 className="section-title">השפית שלנו</h1>
-          <img src={myImgSrc} className="my-image"></img>
+      <div className={`${styles.about} container`}>
+        <div className={styles.col_right}>
+          <h1 className={styles.section_title}>השפית שלנו</h1>
+          <img src={myImgSrc} className={styles.my_image}></img>
           <h2>עדי גיבלי</h2>
           <p>
             בזמן הפנוי שלי אני מאוד אוהבת לאפות ולבשל, בשבילי זה תרפיה. אני מאוד
@@ -20,4 +20,6 @@ export default function About() {
       </div>
     </section>
   );
-}
+};
+
+export default About;

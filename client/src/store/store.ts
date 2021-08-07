@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     cakes: cakesReducer,
     auth: authReducer,
-    // cart: cartReducer,
+    cart: cartReducer,
   },
 });
 

@@ -1,14 +1,15 @@
+import { CakeData } from "../../store/cakes-Slice";
 import BuyArea from "./BuyArea";
-import "./CardInfo.css";
+import styles from "./CardInfo.module.css";
 
- const CardInfo:React.FC<{cakeName: string, price:number, description:string}>  = ({ cakeName, price, description })=> {
+const CardInfo: React.FC<{ cakeData: CakeData }> = ({ cakeData }) => {
   return (
-    <div className="card_info">
-      <h2> {cakeName} </h2>
-      {<h4> {description} </h4>}
-      <BuyArea price={price} />
+    <div className={styles.card_info}>
+      <h2> {cakeData.name} </h2>
+      {<h4> {cakeData.description} </h4>}
+      <BuyArea cakeData={cakeData} />
     </div>
   );
-}
+};
 
 export default CardInfo;

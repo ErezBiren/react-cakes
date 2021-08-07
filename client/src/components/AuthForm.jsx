@@ -63,8 +63,16 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
+
+        console.log(data.idToken);
+        const isAdmin = JSON.parse(atob(data.idToken.split('.')[1])).account[0].role === 'admin';
+
+        // 
+        console.log("isAdmin=" + isAdmin);
+
+        localStorage.setItem("token", data.idToken)
            dispatch(authActions.login(data.idToken));
-           history.push('/')
+           history.replace('/')
       })
       .catch((err) => {
         alert(err.message);
