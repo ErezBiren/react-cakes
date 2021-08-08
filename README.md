@@ -6,5 +6,5 @@
 - [Redux](https://redux.js.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Firebase](https://firebase.google.com/)
-- [CssModules]
+- [CssModules](https://github.com/css-modules/css-modules)
  
