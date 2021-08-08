@@ -23,6 +23,7 @@ export const authSlice = createSlice({
       state.isAdmin = !state.isAdmin;
     },
     login: (state, action) => {
+
       state.token = action.payload;
       state.isLoggedIn = true;
     },

@@ -1,8 +1,9 @@
 import { useState, useRef, SyntheticEvent } from 'react';
 import { authActions } from "../store/auth-Slice";
-import classes from './AuthForm.module.css';
+import styles from './AuthForm.module.css';
 import { useDispatch } from 'react-redux';
 import {useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const AuthForm = () => {
   const history = useHistory();
@@ -81,15 +82,15 @@ const AuthForm = () => {
   };
 
   return (
-    <section className={classes.auth}>
+    <section className={styles.auth}>
       <h1>{isLogin ? 'התחברות' : 'הרשמה'}</h1>
       <form onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor='email'>דואר אלקטרוני</label>
-          <input type='email' id='email' required ref={emailInputRef} />
-        </div>
-        <div className={classes.control}>
+        
+        <div className={styles.control}>
+          <div className={styles.passLabels}>
           <label htmlFor='password'>סיסמא</label>
+          <Link to="/password_reset">שכחת סיסמא? </Link>
+          </div>
           <input
             type='password'
             id='password'
@@ -97,11 +98,11 @@ const AuthForm = () => {
             ref={passwordInputRef}
           />
         </div>
-        <div className={classes.actions}>
+        <div className={styles.actions}>
           <button>{isLogin ? 'כניסה' : 'הרשמה'}</button>
           <button
             type='button'
-            className={classes.toggle}
+            className={styles.toggle}
             onClick={switchAuthModeHandler}
           >
             {isLogin ? 'הרשמה חדשה' : 'כניסה עם משתמש קיים'}
