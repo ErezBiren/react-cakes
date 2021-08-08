@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .cake_icon {
@@ -37,14 +37,14 @@ p {
   align-items: center;
 }
 
-.home_main_cake_container {
+.main_cake_container {
   position: relative;
 }
 
-.home_main_cake {
+.main_cake {
   object-fit: cover;
-  width: 50vw;
-  height: 100vh;
+  width: 100vw;
+  height: 70vh;
 }
 /* .home_main_cake_fade_effect {
   width: 50vw;
@@ -58,5 +58,21 @@ p {
 @media only screen and (min-width: 768px) {
   h1 {
     font-size: 3em;
+  }
+
+  .main_cake {
+    object-fit: cover;
+    width: 50vw;
+    height: 100vh;
+  }
+
+  .home_container {
+    height: 100vh;
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
   }
 }

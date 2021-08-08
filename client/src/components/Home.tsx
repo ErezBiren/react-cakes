@@ -1,4 +1,4 @@
-import "./Home.css";
+import styles from "./Home.module.css";
 import mainCakeSrc from "../assets/mainCake.jpeg";
 
 import { ReactComponent as CakeIcon } from "../assets/icons/cake.svg";
@@ -12,27 +12,27 @@ import { RootState } from "../store/store";
 export default function HomePage() {
   const dispatch = useDispatch();
 
-  const isAdmin = useSelector((state : RootState) => state.auth.isAdmin);
+  const isAdmin = useSelector((state: RootState) => state.auth.isAdmin);
 
   return (
     <section id="home">
-      <div className="home_container container">
+      <div className={`${styles.home_container} container`}>
         {/* <button onClick={() => dispatch(authActions.toggleAdmin())}>
-        is Admin
-      </button>
-      {isAdmin && <CakeForm />} */}
+          is Admin
+        </button>
+        {isAdmin && <CakeForm />} */}
 
-        <div className="title_container">
-          <div className="title_inner_container">
+        <div className={styles.title_container}>
+          <div className={styles.title_inner_container}>
             <h1>העוגות של דידי</h1>
-            {<CakeIcon className="cake_icon"/>}
+            {<CakeIcon className={styles.cake_icon} />}
           </div>
           <p>שיגעון של עוגות ומתוקים לכל אירוע בעיצוב אישי</p>
         </div>
 
-        <div className="home_main_cake_container">
+        <div className={styles.main_cake_container}>
           {/* <div class="home_main_cake_fade_effect"></div> */}
-          <img className="home_main_cake" src={mainCakeSrc}></img>
+          <img className={styles.main_cake} src={mainCakeSrc}></img>
         </div>
       </div>
     </section>
