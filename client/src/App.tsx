@@ -8,6 +8,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import AuthPage from "./pages/AuthPage";
 import ProfilePage from "./pages/ProfilePage";
 import CartPage from "./pages/CartPage";
+import AdminPage from "./pages/AdminPage";
 import PasswordReset from "./pages/PasswordReset";
 
 export default function App() {
@@ -28,6 +29,9 @@ export default function App() {
       </Route>
       <Route path="/auth">
         <AuthPage />
+      </Route>
+      <Route path="/admin">
+        <AdminPage />
       </Route>
       <Route path="/password_reset">
         <PasswordReset />

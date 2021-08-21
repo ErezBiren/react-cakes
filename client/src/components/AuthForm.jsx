@@ -24,6 +24,10 @@ const AuthForm = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
+    console.log(enteredEmail); 
+    console.log(enteredPassword); 
+
+
     // optional: Add validation
 
     setIsLoading(true);
@@ -86,6 +90,11 @@ const AuthForm = () => {
       <h1>{isLogin ? 'התחברות' : 'הרשמה'}</h1>
       <form onSubmit={submitHandler}>
         
+        <div className={styles.control}>
+          <label htmlFor='email'>דואר אלקטרוני</label>
+          <input type='email' id='email' required ref={emailInputRef} />
+        </div>
+
         <div className={styles.control}>
           <div className={styles.passLabels}>
           <label htmlFor='password'>סיסמא</label>
