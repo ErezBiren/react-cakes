@@ -9,7 +9,7 @@ export default function HomePage() {
       <Header />
       <Home />
       <CakesGallery />
-      <About />
+      <About /> 
     </>
   );
 }
