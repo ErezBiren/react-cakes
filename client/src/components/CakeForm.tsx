@@ -1,7 +1,7 @@
 import { useState, useEffect, SyntheticEvent, ChangeEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cakesActions } from "../store/cakes-Slice";
-import { sendCakeData, updateCakeData } from "../store/cakes-actions";
+import { addCakeData, updateCakeData } from "../store/cakes-actions";
 import { RootState } from "../store/store";
 
 export default function CakeForm() {
@@ -57,7 +57,7 @@ export default function CakeForm() {
       dispatch(updateCakeData(cakeData));
       dispatch(cakesActions.updateCake(cakeData));
     } else {
-      dispatch(sendCakeData(cakeData));
+      dispatch(addCakeData(cakeData));
       clear();
     }
   };

@@ -10,7 +10,8 @@ function CartIcon() {
 
   return (
     <div className={styles.container}>
-      <Icon className={styles.cartIcon} />
+      {/* todo:erez width height to css */}
+      <Icon className={styles.cartIcon} width="35" height="35" />
       <div className={styles.totalQuantity}>{totalQuantity}</div>
     </div>
   );

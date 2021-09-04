@@ -4,7 +4,7 @@ import { AppDispatch } from "./store";
 
 const isFireBase = true;
 
-export const deleteCakeData = (cakeId : string) => {
+export const deleteCakeData = (cakeId: string) => {
   if (isFireBase) {
     return async (dispatch: AppDispatch) => {
       db.collection("cakes").doc(cakeId).delete();
@@ -14,7 +14,7 @@ export const deleteCakeData = (cakeId : string) => {
   }
 };
 
-export const updateCakeData = (cake : CakeData) => {
+export const updateCakeData = (cake: CakeData) => {
   if (isFireBase) {
     return async (dispatch: AppDispatch) => {
       db.collection("cakes").doc(cake.id).update(cake);
@@ -23,17 +23,15 @@ export const updateCakeData = (cake : CakeData) => {
   }
 };
 
-export const sendCakeData = (cake : CakeData) => {
+export const addCakeData = (cake: CakeData) => {
   if (isFireBase) {
     return async (dispatch: AppDispatch) => {
-      db.collection("cakes")
-        .add({
-          name: cake.name,
-          price: cake.price,
-          //timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          description: cake.description,
-          imgSrc: cake.imgSrc,
-        })
+      db.collection("cakes").add({
+        name: cake.name,
+        price: cake.price,
+        description: cake.description,
+        imgSrc: cake.imgSrc,
+      })
         .then(function (doc) {
           const newCake = { ...cake, id: doc.id };
           dispatch(cakesActions.addCake(newCake));
@@ -66,7 +64,7 @@ export const sendCakeData = (cake : CakeData) => {
 
 export const fetchCakeData = () => {
   if (isFireBase) {
-    return async (dispatch : AppDispatch) => {
+    return async (dispatch: AppDispatch) => {
       db.collection("cakes")
         .get()
         .then((querySnapshot) => {

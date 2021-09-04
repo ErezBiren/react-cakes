@@ -1,12 +1,13 @@
 import { DataGrid } from "@material-ui/data-grid";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { cakesActions, CakeData } from "../store/cakes-Slice";
-import { AppDispatch } from "react-redux";
-
-
+import { deleteCakeData, addCakeData } from "../store/cakes-actions";
+import { RootState } from "../store/store";
+import { CakeData } from "../store/cakes-Slice";
+import DeleteDialog from "../components/Admin/DeleteDialog";
+import styles from "./AdminPage.module.css";
 
 const rows = [{ id: 1, lastName: "Snow", firstName: "Jon", age: 35 }];
 
@@ -42,27 +43,43 @@ const columns = [
 export default function AdminPage() {
   const dispatch = useDispatch();
 
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
-  const cakes = useSelector((state) => state.cakes.cakes);
+  const cakes = useSelector((state: RootState) => state.cakes.cakes);
 
-  const handleSelectionChange = (selection) => {
+  const handleSelectionChange = (selection: any) => {
+    //todo:erez replace any with specfic type
     setSelectedRows(selection);
   };
 
-  const onDelete = () => {
+  const handleDelete = () => {
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteDialogResolved = () => {
+    setDeleteDialogOpen(false);
+
     selectedRows.forEach((s) => {
-      console.log(s);
-      dispatch(cakesActions.deleteCake(s));
+      dispatch(deleteCakeData(s));
     });
   };
 
-  const addCake = () => {
-    const newCake = { ...cake, id: doc.id };
-    dispatch(cakesActions.addCake(newCake));
+  const handleDeleteDialogRejected = () => setDeleteDialogOpen(false);
+
+  const onAddCake = () => {
+    const newCake: CakeData = {
+      name: "1",
+      price: 1,
+      id: "1",
+      imgSrc: "2",
+      description: "2",
+    };
+
+    dispatch(addCakeData(newCake));
   };
 
   return (
-    <>
+    <div className={styles.adminMain}>
       <div>
         <TextField id="name" label="שם" />
       </div>
@@ -76,8 +93,8 @@ export default function AdminPage() {
         <TextField id="imgSource" label="כתובת תמונה" />
       </div>
 
-      <Button variant="contained" color="primary" onClick={addCake}>
-        Add
+      <Button variant="contained" color="primary" onClick={onAddCake}>
+        הוספה
       </Button>
 
       <div style={{ height: "500px", width: "100%" }}>
@@ -89,9 +106,14 @@ export default function AdminPage() {
           onSelectionModelChange={handleSelectionChange}
         />
       </div>
-      <Button variant="contained" color="primary" onClick={onDelete}>
-        Delete
+      <Button variant="contained" color="primary" onClick={handleDelete}>
+        מחיקה
       </Button>
-    </>
+      <DeleteDialog
+        open={deleteDialogOpen}
+        onResolved={handleDeleteDialogResolved}
+        onRejected={handleDeleteDialogRejected}
+      ></DeleteDialog>
+    </div>
   );
 }

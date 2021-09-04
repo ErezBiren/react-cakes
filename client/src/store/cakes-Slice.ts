@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export type CakeData = {
   name: string,
-  price : number,
-  id : string,
-  imgSrc : string,
-  description : string
+  price: number,
+  id: string,
+  imgSrc: string,
+  description: string
 }
 
 interface CakesState {
@@ -13,7 +13,7 @@ interface CakesState {
   selectedCakeID: string,
 }
 
-export const initialState : CakesState = {
+export const initialState: CakesState = {
   cakes: [],
   selectedCakeID: "",
 };
@@ -22,7 +22,7 @@ export const cakesSlice = createSlice({
   name: "cakes",
   initialState,
   reducers: {
-    addCake: (state : CakesState, action) => {
+    addCake: (state: CakesState, action) => {
       const exists = state.cakes.some((cake) => cake.id === action.payload);
       if (!exists) {
         state.cakes.push(action.payload);
