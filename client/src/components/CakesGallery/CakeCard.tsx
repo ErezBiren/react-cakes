@@ -15,7 +15,7 @@ export default function (cakeData: CakeData) {
           {<TaskbarIcons cakeId={cakeData.id} />}
         </div>
       )}
-      {<img src={cakeData.imgSrc} />}
+      {<img src={cakeData.imageSource} />}
       <CardInfo cakeData={cakeData} />
     </div>
   );

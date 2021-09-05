@@ -1,6 +1,6 @@
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid, GridSelectionModel } from "@material-ui/data-grid";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { ChangeEvent, SetStateAction, useRef, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { deleteCakeData, addCakeData } from "../store/cakes-actions";
@@ -33,7 +33,7 @@ const columns = [
     editable: true,
   },
   {
-    field: "imgSrc",
+    field: "imageSource",
     headerName: "כתובת תמונה",
     width: 250,
     editable: true,
@@ -41,15 +41,30 @@ const columns = [
 ];
 
 export default function AdminPage() {
+  const [newCakeData, setNewCakeData] = useState({
+    id: "",
+    name: "",
+    price: 0,
+    imageSource: "",
+    description: "",
+  });
+
   const dispatch = useDispatch();
 
+  const [isDeleteDisabled, setIsDeleteDisabled] = useState(true);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const cakes = useSelector((state: RootState) => state.cakes.cakes);
 
+  // todo : replace any with concrete type
   const handleSelectionChange = (selection: any) => {
-    //todo:erez replace any with specfic type
     setSelectedRows(selection);
+
+    if (selection.length > 0) {
+      setIsDeleteDisabled(false);
+    } else {
+      setIsDeleteDisabled(true);
+    }
   };
 
   const handleDelete = () => {
@@ -67,30 +82,42 @@ export default function AdminPage() {
   const handleDeleteDialogRejected = () => setDeleteDialogOpen(false);
 
   const onAddCake = () => {
-    const newCake: CakeData = {
-      name: "1",
-      price: 1,
-      id: "1",
-      imgSrc: "2",
-      description: "2",
-    };
+    dispatch(addCakeData(newCakeData));
+  };
 
-    dispatch(addCakeData(newCake));
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setNewCakeData({ ...newCakeData, [e.target.name]: e.target.value });
   };
 
   return (
     <div className={styles.adminMain}>
       <div>
-        <TextField id="name" label="שם" />
+        <TextField required name="name" label="שם" onChange={handleChange} />
       </div>
       <div>
-        <TextField id="price" label="מחיר" />
+        <TextField
+          required
+          name="price"
+          label="מחיר"
+          onChange={handleChange}
+          type="number"
+        />
       </div>
       <div>
-        <TextField id="description" label="תיאור" />
+        <TextField
+          required
+          name="description"
+          label="תיאור"
+          onChange={handleChange}
+        />
       </div>
       <div>
-        <TextField id="imgSource" label="כתובת תמונה" />
+        <TextField
+          required
+          name="imageSource"
+          label="כתובת תמונה"
+          onChange={handleChange}
+        />
       </div>
 
       <Button variant="contained" color="primary" onClick={onAddCake}>
@@ -106,7 +133,12 @@ export default function AdminPage() {
           onSelectionModelChange={handleSelectionChange}
         />
       </div>
-      <Button variant="contained" color="primary" onClick={handleDelete}>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={handleDelete}
+        disabled={isDeleteDisabled}
+      >
         מחיקה
       </Button>
       <DeleteDialog

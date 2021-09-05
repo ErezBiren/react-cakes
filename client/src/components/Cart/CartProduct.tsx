@@ -5,7 +5,7 @@ const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
   return (
     <tr className={styles.items_in_cart}>
       <td>
-        <img src={cartItem.cakeData.imgSrc}></img>
+        <img src={cartItem.cakeData.imageSource}></img>
       </td>
       <td>{cartItem.cakeData.name}</td>
       <td>{cartItem.cakeData.price}</td>

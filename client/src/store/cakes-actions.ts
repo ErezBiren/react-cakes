@@ -30,7 +30,7 @@ export const addCakeData = (cake: CakeData) => {
         name: cake.name,
         price: cake.price,
         description: cake.description,
-        imgSrc: cake.imgSrc,
+        imageSource: cake.imageSource,
       })
         .then(function (doc) {
           const newCake = { ...cake, id: doc.id };
@@ -65,6 +65,12 @@ export const addCakeData = (cake: CakeData) => {
 export const fetchCakeData = () => {
   if (isFireBase) {
     return async (dispatch: AppDispatch) => {
+
+      // fetch('https://cakes-75551.firebaseio.com/cakes.json').then(response =>
+      //   response.json())
+      //   .then(data => console.log(data));
+
+
       db.collection("cakes")
         .get()
         .then((querySnapshot) => {

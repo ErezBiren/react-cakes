@@ -9,7 +9,7 @@ export default function CakeForm() {
     id: "",
     name: "",
     price: 0,
-    imgSrc: "",
+    imageSource: "",
     description: "",
   });
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export default function CakeForm() {
         id: cake.id ? cake.id : "",
         name: cake.name ? cake.name : "",
         price: cake.price ? cake.price : 0,
-        imgSrc: cake.imgSrc ? cake.imgSrc : "",
+        imageSource: cake.imageSource ? cake.imageSource : "",
         description: cake.description ? cake.description : "",
       });
     }
@@ -45,7 +45,7 @@ export default function CakeForm() {
       id: "",
       name: "",
       price: 0,
-      imgSrc: "",
+      imageSource: "",
       description: "",
     });
   };
@@ -84,9 +84,9 @@ export default function CakeForm() {
           onChange={handleChange}
         />
         <input
-          name="imgSrc"
-          value={cakeData && cakeData.imgSrc}
-          placeholder="imgSrc"
+          name="imageSource"
+          value={cakeData && cakeData.imageSource}
+          placeholder="imageSource"
           onChange={handleChange}
         />
         <input type="submit" value="Submit" />

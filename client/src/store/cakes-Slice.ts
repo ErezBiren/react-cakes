@@ -4,7 +4,7 @@ export type CakeData = {
   name: string,
   price: number,
   id: string,
-  imgSrc: string,
+  imageSource: string,
   description: string
 }
 
