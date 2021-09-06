@@ -1,4 +1,17 @@
-.items_in_cart img {
-  width: 4em;
-  height: auto;
+.main {
+  display: flex;
+  margin: 15px;
 }
+
+.detailes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.image {
+  width: 6em;
+  margin-left: 10px;
+}
+
+

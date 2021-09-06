@@ -1,24 +1,39 @@
+import React from "react";
+import { cartActions } from "../../store/cart-Slice";
+import { useDispatch } from "react-redux";
 import { CartItemData } from "../../store/cart-Slice";
-import styles from "./CartProduct.module.css"
+import styles from "./CartProduct.module.css";
+import { TextField } from "@material-ui/core";
 
 const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
+  const dispatch = useDispatch();
+
+  const handleQuantityChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const quantity = parseInt(e.target.value);
+    const updatedCart = { ...cartItem, quantity: quantity };
+    dispatch(cartActions.updateCartItem(updatedCart));
+  };
+
   return (
-    <tr className={styles.items_in_cart}>
-      <td>
-        <img src={cartItem.cakeData.imageSource}></img>
-      </td>
-      <td>{cartItem.cakeData.name}</td>
-      <td>{cartItem.cakeData.price}</td>
-      <td>
-        <input type="number" name="quantity" min="1" max="10" />
-      </td>
-      <td>{cartItem.cakeData.price * cartItem.quantity}</td>
-      <td>
-        <i className="fas fa-trash"></i>
-      </td>
-    </tr>
+    <div className={styles.main}>
+      <div className={styles.imageContainer}>
+        <img className={styles.image} src={cartItem.cakeData.imageSource}></img>
+      </div>
+      <div className={styles.detailes}>
+        <div>{cartItem.cakeData.name}</div>
+        <div>{cartItem.cakeData.price} ש"ח</div>
+        <div>
+          <TextField
+            type="number"
+            name="quantity"
+            InputProps={{ inputProps: { min: 0, max: 10 } }}
+            value={cartItem.quantity}
+            onChange={handleQuantityChanged}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
-
 
 export default CartProduct;

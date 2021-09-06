@@ -61,7 +61,12 @@ export default function Header() {
             <CartIcon />
           </IconButton>
           <Link to="/auth">
-            {!isLoggedIn && <LoginIcon className={styles.login_icon} />}
+            {!isLoggedIn && (
+              <div>
+                <div>התחברות</div>
+                <LoginIcon className={styles.login_icon} />
+              </div>
+            )}
           </Link>
         </div>
       </div>
