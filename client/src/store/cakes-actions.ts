@@ -65,12 +65,6 @@ export const addCakeData = (cake: CakeData) => {
 export const fetchCakeData = () => {
   if (isFireBase) {
     return async (dispatch: AppDispatch) => {
-
-      // fetch('https://cakes-75551.firebaseio.com/cakes.json').then(response =>
-      //   response.json())
-      //   .then(data => console.log(data));
-
-
       db.collection("cakes")
         .get()
         .then((querySnapshot) => {

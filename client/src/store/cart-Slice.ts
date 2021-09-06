@@ -4,17 +4,19 @@ import { CakeData } from "./cakes-Slice";
 
 export type CartItemData = {
   cakeData: CakeData,
-  quantity: number
+  quantity: number,
 }
 
 interface CartState {
   cartItems: CartItemData[],
   totalQuantity: number,
+  isDrawerOpen: boolean
 }
 
 export const initialState: CartState = {
   cartItems: [],
   totalQuantity: 0,
+  isDrawerOpen: false
 };
 
 export const cartSlice = createSlice({
@@ -36,8 +38,8 @@ export const cartSlice = createSlice({
 
       state.totalQuantity = state.cartItems.length;
     },
-    removeItemFromCart: (state, action) => { }, 
-
+    removeItemFromCart: (state, action) => { },
+    toggleCartDrawer: (state: CartState, action) => { state.isDrawerOpen = action.payload },
   },
 });
 

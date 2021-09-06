@@ -1,15 +1,14 @@
 import { cartActions } from "../../store/cart-Slice";
 import { useDispatch } from "react-redux";
 import { CakeData } from "../../store/cakes-Slice";
-import styles from "./BuyArea.module.css"
+import styles from "./BuyArea.module.css";
 
-const BuyArea: React.FC<{ cakeData: CakeData }> = ({cakeData}) => {
-
+const BuyArea: React.FC<{ cakeData: CakeData }> = ({ cakeData }) => {
   const dispatch = useDispatch();
 
-
   const handleAddToCart = () => {
-    dispatch(cartActions.addItemToCart(cakeData))
+    dispatch(cartActions.addItemToCart(cakeData));
+    dispatch(cartActions.toggleCartDrawer(true));
   };
 
   return (

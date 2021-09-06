@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import { ReactComponent as LoginIcon } from "../assets/icons/login.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import CartIcon from "./Cart/CartIcon";
+import IconButton from "@material-ui/core/IconButton";
+import { cartActions } from "../store/cart-Slice";
 
 export default function Header() {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+  const isDrawerOpen = useSelector(
+    (state: RootState) => state.cart.isDrawerOpen
+  );
+  const dispatch = useDispatch();
+
+  const handleCartIconClick = () => {
+    dispatch(cartActions.toggleCartDrawer(!isDrawerOpen));
+  };
 
   return (
     <section className={styles.header_container}>
@@ -47,9 +57,9 @@ export default function Header() {
               </li>
             </ul>
           </div>
-          <Link to="/cart">
+          <IconButton onClick={handleCartIconClick}>
             <CartIcon />
-          </Link>
+          </IconButton>
           <Link to="/auth">
             {!isLoggedIn && <LoginIcon className={styles.login_icon} />}
           </Link>
