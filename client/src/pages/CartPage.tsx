@@ -1,7 +1,11 @@
 import CartList from "../components/Cart/CartList";
 
 const CartPage = () => {
-  return <CartList />;
+  return (
+    <>
+      <CartList />
+    </>
+  );
 };
 
 export default CartPage;

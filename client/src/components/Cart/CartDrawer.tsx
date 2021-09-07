@@ -5,6 +5,7 @@ import CartProduct from "./CartProduct";
 import styles from "./CartDrawer.module.css";
 import { RootState } from "../../store/store";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 export default function CartDrawer() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ export default function CartDrawer() {
             <h2>{totalPrice} ש"ח</h2>
           </div>
           <div className={styles.buttonContainer}>
+          <Link to="/cart">
             <Button
               variant="contained"
               color="primary"
@@ -50,6 +52,7 @@ export default function CartDrawer() {
             >
               צפייה בסל
             </Button>
+            </Link>
           </div>
         </div>
       </Drawer>

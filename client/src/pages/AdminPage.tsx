@@ -1,18 +1,20 @@
-import { DataGrid, GridSelectionModel } from "@material-ui/data-grid";
+import { DataGrid, GridCellEditCommitParams } from "@material-ui/data-grid";
 import { useSelector, useDispatch } from "react-redux";
-import { ChangeEvent, SetStateAction, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { deleteCakeData, addCakeData } from "../store/cakes-actions";
+import {
+  deleteCakeData,
+  addCakeData,
+  updateCakeData,
+} from "../store/cakes-actions";
 import { RootState } from "../store/store";
-import { CakeData } from "../store/cakes-Slice";
 import DeleteDialog from "../components/Admin/DeleteDialog";
 import styles from "./AdminPage.module.css";
-
-const rows = [{ id: 1, lastName: "Snow", firstName: "Jon", age: 35 }];
+import { CakeData } from "../store/cakes-Slice";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 110 },
+  { field: "id", headerName: "ID", width: 200 },
   {
     field: "name",
     headerName: "שם",
@@ -35,8 +37,8 @@ const columns = [
   {
     field: "imageSource",
     headerName: "כתובת תמונה",
-    width: 250,
     editable: true,
+    minWidth: 150,
   },
 ];
 
@@ -55,6 +57,19 @@ export default function AdminPage() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const cakes = useSelector((state: RootState) => state.cakes.cakes);
+  const [tempCakes, setTempCakes] = useState<CakeData[]>([]);
+
+  useEffect(() => {
+    setTempCakes(cakes);
+  }, [cakes]);
+
+  const handleCellEditCommit = (param: GridCellEditCommitParams) => {
+    setTempCakes(
+      tempCakes.map((cake) =>
+        cake.id === param.id ? { ...cake, [param.field]: param.value } : cake
+      )
+    );
+  };
 
   // todo : replace any with concrete type
   const handleSelectionChange = (selection: any) => {
@@ -65,6 +80,13 @@ export default function AdminPage() {
     } else {
       setIsDeleteDisabled(true);
     }
+  };
+
+  //todo: check how to do this
+  const handleSave = () => {
+    tempCakes.forEach((s) => {
+      dispatch(updateCakeData(s));
+    });
   };
 
   const handleDelete = () => {
@@ -91,34 +113,26 @@ export default function AdminPage() {
 
   return (
     <div className={styles.adminMain}>
-      <div>
-        <TextField required name="name" label="שם" onChange={handleChange} />
-      </div>
-      <div>
-        <TextField
-          required
-          name="price"
-          label="מחיר"
-          onChange={handleChange}
-          type="number"
-        />
-      </div>
-      <div>
-        <TextField
-          required
-          name="description"
-          label="תיאור"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <TextField
-          required
-          name="imageSource"
-          label="כתובת תמונה"
-          onChange={handleChange}
-        />
-      </div>
+      <TextField required name="name" label="שם" onChange={handleChange} />
+      <TextField
+        required
+        name="price"
+        label="מחיר"
+        onChange={handleChange}
+        type="number"
+      />
+      <TextField
+        required
+        name="description"
+        label="תיאור"
+        onChange={handleChange}
+      />
+      <TextField
+        required
+        name="imageSource"
+        label="כתובת תמונה"
+        onChange={handleChange}
+      />
 
       <Button variant="contained" color="primary" onClick={onAddCake}>
         הוספה
@@ -126,11 +140,12 @@ export default function AdminPage() {
 
       <div style={{ height: "500px", width: "100%" }}>
         <DataGrid
-          rows={cakes}
+          rows={tempCakes}
           columns={columns}
           checkboxSelection
           disableSelectionOnClick
           onSelectionModelChange={handleSelectionChange}
+          onCellEditCommit={handleCellEditCommit}
         />
       </div>
       <Button
@@ -140,6 +155,9 @@ export default function AdminPage() {
         disabled={isDeleteDisabled}
       >
         מחיקה
+      </Button>
+      <Button variant="contained" color="primary" onClick={handleSave}>
+        לשמור הכל
       </Button>
       <DeleteDialog
         open={deleteDialogOpen}
