@@ -6,6 +6,7 @@ import { RootState } from "../store/store";
 import CartIcon from "./Cart/CartIcon";
 import IconButton from "@material-ui/core/IconButton";
 import { cartActions } from "../store/cart-Slice";
+import { AccountCircle } from "@material-ui/icons";
 
 export default function Header() {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
@@ -64,7 +65,7 @@ export default function Header() {
             {!isLoggedIn && (
               <div>
                 <div>התחברות</div>
-                <LoginIcon className={styles.login_icon} />
+                <AccountCircle />
               </div>
             )}
           </Link>
