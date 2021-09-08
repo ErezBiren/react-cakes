@@ -36,22 +36,27 @@ export default function CartDrawer() {
           <div className={styles.header}>
             <h2>סל הקניות</h2>
           </div>
-          {cartItems.map((item) => (
-            <CartProduct cartItem={item} />
-          ))}
+
+          <div className={styles.carts}>
+            {cartItems.map((item) => (
+              <CartProduct key={item.cakeData.id} cartItem={item} />
+            ))}
+          </div>
+
           <div className={styles.totalPriceContainer}>
             <h2>סכום ביניים</h2>
             <h2>{totalPrice} ש"ח</h2>
           </div>
+
           <div className={styles.buttonContainer}>
-          <Link to="/cart">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleViewCartClick}
-            >
-              צפייה בסל
-            </Button>
+            <Link to="/cart">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleViewCartClick}
+              >
+                צפייה בסל
+              </Button>
             </Link>
           </div>
         </div>

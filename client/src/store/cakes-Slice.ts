@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type CakeData = {
   name: string,
@@ -28,25 +28,15 @@ export const cakesSlice = createSlice({
         state.cakes.push(action.payload);
       }
     },
-    updateCake: (state: CakesState, action) => {
+    updateCake: (state: CakesState, action: PayloadAction<CakeData>) => {
       state.cakes = state.cakes.map((cake) =>
         cake.id === action.payload.id ? action.payload : cake
       );
     },
-    editCake: (state, action) => {
-      state.selectedCakeID = action.payload;
-    },
-    deleteCake: (state, action) => {
+    deleteCake: (state, action: PayloadAction<string>) => {
       state.cakes = [
         ...state.cakes.filter((cake) => cake.id !== action.payload),
       ];
-    },
-    replaceCakes: (state, action) => {
-      console.log(JSON.stringify(action.payload));
-
-      if (action.payload && action.payload.length !== 0) {
-        state.cakes = action.payload;
-      }
     },
   },
 });

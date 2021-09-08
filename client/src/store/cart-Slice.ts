@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CakeData } from "./cakes-Slice";
 
 export type CartItemData = {
@@ -22,11 +22,17 @@ export const initialState: CartState = {
   totalPrice: 0
 };
 
+const updateTotalPrice = (state: CartState) => {
+  let totalPrice = 0;
+  state.cartItems.forEach((cartItem) => totalPrice += cartItem.cakeData.price * cartItem.quantity);
+  state.totalPrice = totalPrice;
+}
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItemToCart: (state: CartState, action) => {
+    addItemToCart: (state: CartState, action: PayloadAction<CakeData>) => {
 
       let cartItem = state.cartItems.find(cart => cart.cakeData.id === action.payload.id);
 
@@ -47,14 +53,17 @@ export const cartSlice = createSlice({
         state.cartItems.push(cartItem);
       }
 
-      let totalPrice = 0;
-      state.cartItems.forEach((cartItem) => totalPrice += cartItem.cakeData.price * cartItem.quantity);
-      state.totalPrice = totalPrice;
+      updateTotalPrice(state);
 
       state.totalQuantity = state.cartItems.length;
     },
-    removeItemFromCart: (state, action) => { },
-    updateCartItem: (state, action) => {
+    removeCartItem: (state, action: PayloadAction<CartItemData>) => {
+      let removeItemId = action.payload.cakeData.id;
+      state.cartItems = state.cartItems.filter(item => item.cakeData.id !== removeItemId);
+
+      updateTotalPrice(state);
+    },
+    updateCartItem: (state, action: PayloadAction<CartItemData>) => {
 
       const cartItem = action.payload;
 
@@ -62,9 +71,7 @@ export const cartSlice = createSlice({
         { ...cartItem } : item
       )
 
-      let totalPrice = 0;
-      state.cartItems.forEach((cartItem) => totalPrice += cartItem.cakeData.price * cartItem.quantity);
-      state.totalPrice = totalPrice;
+      updateTotalPrice(state);
     },
     toggleCartDrawer: (state, action) => { state.isDrawerOpen = action.payload },
   },

@@ -3,7 +3,8 @@ import { cartActions } from "../../store/cart-Slice";
 import { useDispatch } from "react-redux";
 import { CartItemData } from "../../store/cart-Slice";
 import styles from "./CartProduct.module.css";
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 
 const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
   const dispatch = useDispatch();
@@ -12,6 +13,10 @@ const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
     const quantity = parseInt(e.target.value);
     const updatedCart = { ...cartItem, quantity: quantity };
     dispatch(cartActions.updateCartItem(updatedCart));
+  };
+
+  const handleRemoveItem = () => {
+    dispatch(cartActions.removeCartItem(cartItem));
   };
 
   return (
@@ -32,6 +37,9 @@ const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
           />
         </div>
       </div>
+      <Button onClick={handleRemoveItem}>
+        <CloseIcon />
+      </Button>
     </div>
   );
 };

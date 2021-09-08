@@ -1,9 +1,12 @@
 .main {
   display: flex;
   margin: 15px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .detailes {
+  text-align: right;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
