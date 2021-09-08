@@ -3,7 +3,7 @@ import { cartActions } from "../../store/cart-Slice";
 import { useDispatch } from "react-redux";
 import { CartItemData } from "../../store/cart-Slice";
 import styles from "./CartProduct.module.css";
-import { Button, TextField } from "@material-ui/core";
+import { IconButton, TextField, Tooltip } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 
 const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
@@ -31,15 +31,17 @@ const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
           <TextField
             type="number"
             name="quantity"
-            InputProps={{ inputProps: { min: 0, max: 10 } }}
+            InputProps={{ inputProps: { min: 1, max: 10 } }}
             value={cartItem.quantity}
             onChange={handleQuantityChanged}
           />
         </div>
       </div>
-      <Button onClick={handleRemoveItem}>
-        <CloseIcon />
-      </Button>
+      <Tooltip title="הסר פריט">
+        <IconButton onClick={handleRemoveItem}>
+          <CloseIcon />
+        </IconButton>
+      </Tooltip>
     </div>
   );
 };

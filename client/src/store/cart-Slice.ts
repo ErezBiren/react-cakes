@@ -22,10 +22,14 @@ export const initialState: CartState = {
   totalPrice: 0
 };
 
-const updateTotalPrice = (state: CartState) => {
+const updateTotalParameters = (state: CartState) => {
   let totalPrice = 0;
   state.cartItems.forEach((cartItem) => totalPrice += cartItem.cakeData.price * cartItem.quantity);
   state.totalPrice = totalPrice;
+
+  let totalQuantity = 0;
+  state.cartItems.forEach((cartItem) => totalQuantity += cartItem.quantity);
+  state.totalQuantity = totalQuantity;
 }
 
 export const cartSlice = createSlice({
@@ -53,15 +57,15 @@ export const cartSlice = createSlice({
         state.cartItems.push(cartItem);
       }
 
-      updateTotalPrice(state);
+      updateTotalParameters(state);
 
-      state.totalQuantity = state.cartItems.length;
+
     },
     removeCartItem: (state, action: PayloadAction<CartItemData>) => {
       let removeItemId = action.payload.cakeData.id;
       state.cartItems = state.cartItems.filter(item => item.cakeData.id !== removeItemId);
 
-      updateTotalPrice(state);
+      updateTotalParameters(state);
     },
     updateCartItem: (state, action: PayloadAction<CartItemData>) => {
 
@@ -71,7 +75,7 @@ export const cartSlice = createSlice({
         { ...cartItem } : item
       )
 
-      updateTotalPrice(state);
+      updateTotalParameters(state);
     },
     toggleCartDrawer: (state, action) => { state.isDrawerOpen = action.payload },
   },

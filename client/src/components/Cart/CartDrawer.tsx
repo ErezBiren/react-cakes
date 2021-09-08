@@ -4,8 +4,7 @@ import Drawer from "@material-ui/core/Drawer";
 import CartProduct from "./CartProduct";
 import styles from "./CartDrawer.module.css";
 import { RootState } from "../../store/store";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import CartBottomArea from "./CartBottomArea";
 
 export default function CartDrawer() {
   const dispatch = useDispatch();
@@ -13,7 +12,10 @@ export default function CartDrawer() {
   const isDrawerOpen = useSelector(
     (state: RootState) => state.cart.isDrawerOpen
   );
-  const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
+
+  const totalQuantity = useSelector(
+    (state: RootState) => state.cart.totalQuantity
+  );
 
   const handleCloseDrawer = () => (event: { type: string; key: string }) => {
     if (
@@ -26,9 +28,6 @@ export default function CartDrawer() {
     dispatch(cartActions.toggleCartDrawer(false));
   };
 
-  const handleViewCartClick = () => {};
-
-  // todo : handle empty cart - עדלת הקניות ריקה
   return (
     <div>
       <Drawer anchor="left" open={isDrawerOpen} onClose={handleCloseDrawer()}>
@@ -43,22 +42,7 @@ export default function CartDrawer() {
             ))}
           </div>
 
-          <div className={styles.totalPriceContainer}>
-            <h2>סכום ביניים</h2>
-            <h2>{totalPrice} ש"ח</h2>
-          </div>
-
-          <div className={styles.buttonContainer}>
-            <Link to="/cart">
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleViewCartClick}
-              >
-                צפייה בסל
-              </Button>
-            </Link>
-          </div>
+          {totalQuantity > 0 ? <CartBottomArea /> : <div>עגלת הקניות ריקה</div>}
         </div>
       </Drawer>
     </div>

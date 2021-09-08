@@ -9,11 +9,6 @@ export default function (cakeData: CakeData) {
 
   return (
     <div className={styles.CakeCard_container}>
-      {/* {isAdmin && (
-        <div className={styles.taksbar_wrapper}>
-          {<TaskbarIcons cakeId={cakeData.id} />}
-        </div>
-      )} */}
       <img src={cakeData.imageSource} />
       <CardInfo cakeData={cakeData} />
     </div>
