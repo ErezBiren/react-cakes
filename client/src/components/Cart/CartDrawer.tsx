@@ -42,7 +42,13 @@ export default function CartDrawer() {
             ))}
           </div>
 
-          {totalQuantity > 0 ? <CartBottomArea /> : <div>עגלת הקניות ריקה</div>}
+          {totalQuantity > 0 ? (
+            <CartBottomArea />
+          ) : (
+            <div className={styles.emptyCart}>
+              <h2>עגלת הקניות ריקה</h2>
+            </div>
+          )}
         </div>
       </Drawer>
     </div>

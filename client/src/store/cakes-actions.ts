@@ -11,36 +11,46 @@ export const deleteCakeData = (cakeId: string) => {
 
 export const updateCakeData = (cake: CakeData) => {
   return async (dispatch: AppDispatch) => {
-    await db.collection("cakes").doc(cake.id).update(cake);
-    dispatch(cakesActions.updateCake(cake));
+
+    try {
+
+      await db.collection("cakes").doc(cake.id).update(cake);
+      dispatch(cakesActions.updateCake(cake));
+    } catch (error) {
+      console.error(error);
+    }
+
   };
 };
 
 export const addCakeData = (cake: CakeData) => {
   return async (dispatch: AppDispatch) => {
-    db.collection("cakes").add({
-      name: cake.name,
-      price: cake.price,
-      description: cake.description,
-      imageSource: cake.imageSource,
-    })
-      .then(function (doc) {
-        const newCake = { ...cake, id: doc.id };
-        dispatch(cakesActions.addCake(newCake));
+
+    try {
+
+      const doc = await db.collection("cakes").add({
+        name: cake.name,
+        price: cake.price,
+        description: cake.description,
+        imageSource: cake.imageSource,
       });
+
+      const newCake = { ...cake, id: doc.id };
+      dispatch(cakesActions.addCake(newCake));
+    }
+    catch (error) {
+      console.error(error)
+    }
   };
 };
 
 export const fetchCakeData = () => {
   return async (dispatch: AppDispatch) => {
-    db.collection("cakes")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const cake = { id: doc.id, ...doc.data() };
-          dispatch(cakesActions.addCake(cake));
-        });
-      });
+    const querySnapshot = await db.collection("cakes").get()
+
+    querySnapshot.forEach((doc) => {
+      const cake = { id: doc.id, ...doc.data() };
+      dispatch(cakesActions.addCake(cake));
+    });
   };
 };
- 

@@ -22,53 +22,47 @@ export default function Header() {
   return (
     <section className={styles.header_container}>
       <div className={styles.header}>
-        <div className={styles.nav_bar}>
-          <div className={styles.brand}>
-            <a href="#hero">{/* <h1>עדידי עוגות</h1> */}</a>
-          </div>
-          <div className={styles.nav_list}>
-            <div className={styles.hamburger}>
-              <div className={styles.bar}></div>
-            </div>
-            <ul>
-              <li>
-                <a href="#home" data-after="Home">
-                  בית
-                </a>
-              </li>
-              <li>
-                <a href="#catalog" data-after="Catalog">
-                  קטלוג
-                </a>
-              </li>
-              <li>
-                <a href="#projects" data-after="Projects">
-                  סדנאות
-                </a>
-              </li>
-              <li>
-                <a href="#about" data-after="About">
-                  קצת עלי
-                </a>
-              </li>
-              <li>
-                <a href="#contact" data-after="Contact">
-                  צרו קשר
-                </a>
-              </li>
-            </ul>
-          </div>
-          <IconButton onClick={handleCartIconClick}>
+        <div className={styles.other}>
+          <IconButton className={styles.cartIcon} onClick={handleCartIconClick}>
             <CartIcon />
           </IconButton>
           <Link to="/auth">
             {!isLoggedIn && (
-              <div>
-                <div>התחברות</div>
+              <div className={styles.login}>
                 <AccountCircle />
+                <h2>התחברות</h2>
               </div>
             )}
           </Link>
+        </div>
+        <div className={styles.nav_list}>
+          <ul>
+            <li>
+              <a href="#home" data-after="Home">
+                בית
+              </a>
+            </li>
+            <li>
+              <a href="#catalog" data-after="Catalog">
+                קטלוג
+              </a>
+            </li>
+            <li>
+              <a href="#projects" data-after="Projects">
+                סדנאות
+              </a>
+            </li>
+            <li>
+              <a href="#about" data-after="About">
+                קצת עלי
+              </a>
+            </li>
+            <li>
+              <a href="#contact" data-after="Contact">
+                צרו קשר
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
