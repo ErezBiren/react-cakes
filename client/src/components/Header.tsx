@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { cartActions } from "../store/cart-Slice";
 import { AccountCircle } from "@material-ui/icons";
 
-export default function Header() {
+ const Header = ()=> {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
   const isDrawerOpen = useSelector(
     (state: RootState) => state.cart.isDrawerOpen
@@ -68,3 +68,5 @@ export default function Header() {
     </section>
   );
 }
+
+export default Header;

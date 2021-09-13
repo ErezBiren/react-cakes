@@ -20,7 +20,7 @@ export default function CakeForm() {
 
   const cake = useSelector((state: RootState) =>
     state.cakes.cakes
-      ? state.cakes.cakes.find((cake) => cake.id == selectedCakeID)
+      ? state.cakes.cakes.find((cake) => cake.id === selectedCakeID)
       : null
   );
 

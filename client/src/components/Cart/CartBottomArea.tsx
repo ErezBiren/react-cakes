@@ -4,7 +4,7 @@ import styles from "./CartBottomArea.module.css";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 
-function CartBottomArea() {
+const  CartBottomArea = () => {
 
     const handleViewCartClick = () => {};
     const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);

@@ -22,7 +22,7 @@ const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
   return (
     <div className={styles.main}>
       <div className={styles.imageContainer}>
-        <img className={styles.image} src={cartItem.cakeData.imageSource}></img>
+        <img className={styles.image} src={cartItem.cakeData.imageSource}/>
       </div>
       <div className={styles.detailes}>
         <div>{cartItem.cakeData.name}</div>

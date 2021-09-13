@@ -2,9 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import CartProduct from "./CartProduct";
 
-function CartList() {
-  const removeFromCart = () => {};
-  const updateAmountToPay = () => {};
+const CartList = ()=> {
 
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
