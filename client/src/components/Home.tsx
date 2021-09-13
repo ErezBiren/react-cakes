@@ -32,7 +32,7 @@ export default function HomePage() {
 
         <div className={styles.main_cake_container}>
           {/* <div class="home_main_cake_fade_effect"></div> */}
-          <img className={styles.main_cake} src={mainCakeSrc}></img>
+          <img className={styles.main_cake} src={mainCakeSrc}/>
         </div>
       </div>
     </section>

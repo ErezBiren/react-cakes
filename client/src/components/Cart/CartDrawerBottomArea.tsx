@@ -1,12 +1,11 @@
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import styles from "./CartBottomArea.module.css";
+import styles from "./CartDrawerBottomArea.module.css";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 
 const  CartBottomArea = () => {
 
-    const handleViewCartClick = () => {};
     const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
 
     return (
@@ -17,12 +16,10 @@ const  CartBottomArea = () => {
       </div>
 
       <div className={styles.buttonContainer}>
-        <Link to="/cart">
+        <Link to="react-cakes/cart">
           <Button
             variant="contained"
-            color="primary"
-            onClick={handleViewCartClick}
-          >
+            color="primary">
             צפייה בסל
           </Button>
         </Link>

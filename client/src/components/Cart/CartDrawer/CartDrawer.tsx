@@ -1,10 +1,10 @@
-import { cartActions } from "../../store/cart-Slice";
+import { cartActions } from "../../../store/cart-Slice";
 import { useSelector, useDispatch } from "react-redux";
 import Drawer from "@material-ui/core/Drawer";
-import CartProduct from "./CartProduct";
+import CartProduct from "../CartProduct";
 import styles from "./CartDrawer.module.css";
-import { RootState } from "../../store/store";
-import CartBottomArea from "./CartBottomArea";
+import { RootState } from "../../../store/store";
+import CartBottomArea from "./CartDrawerBottomArea";
 
 export default function CartDrawer() {
   const dispatch = useDispatch();

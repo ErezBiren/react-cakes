@@ -24,22 +24,22 @@ export default function App() {
 
   return (
     <Switch>
-      <Route path="/" exact>
+      <Route path="/react-cakes" exact>
         <HomePage />
       </Route>
-      <Route path="/auth">
+      <Route path="/react-cakes/auth">
         <AuthPage />
       </Route>
-      <Route path="/admin">
+      <Route path="/react-cakes/admin">
         <AdminPage />
       </Route>
-      <Route path="/password_reset">
+      <Route path="/react-cakes/password_reset">
         <PasswordReset />
       </Route>
-      <Route path="/profile">
+      <Route path="/react-cakes/profile">
         <ProfilePage />
       </Route>
-      <Route path="/cart">
+      <Route path="/react-cakes/cart">
         <CartPage />
       </Route>
       <Route path="*">
