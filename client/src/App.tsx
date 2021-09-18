@@ -9,7 +9,6 @@ import AuthPage from "./pages/AuthPage";
 import ProfilePage from "./pages/ProfilePage";
 import CartPage from "./pages/CartPage";
 import AdminPage from "./pages/AdminPage";
-import PasswordReset from "./pages/PasswordReset";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -22,24 +21,23 @@ export default function App() {
     }
   }, []);
 
+ const repositoryName = 'react-cakes';
+
   return (
     <Switch>
-      <Route path="/react-cakes" exact>
+      <Route path={`/${repositoryName}`} exact>
         <HomePage />
       </Route>
-      <Route path="/react-cakes/auth">
+      <Route path={`/${repositoryName}/auth`}>
         <AuthPage />
       </Route>
-      <Route path="/react-cakes/admin">
+      <Route path={`/${repositoryName}/admin`}>
         <AdminPage />
       </Route>
-      <Route path="/react-cakes/password_reset">
-        <PasswordReset />
-      </Route>
-      <Route path="/react-cakes/profile">
+      <Route path={`/${repositoryName}/profile`}>
         <ProfilePage />
       </Route>
-      <Route path="/react-cakes/cart">
+      <Route path={`/${repositoryName}/cart`}>
         <CartPage />
       </Route>
       <Route path="*">
