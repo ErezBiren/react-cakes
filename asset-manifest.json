@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-cakes/static/css/main.b9554799.chunk.css",
-    "main.js": "/react-cakes/static/js/main.99c34530.chunk.js",
-    "main.js.map": "/react-cakes/static/js/main.99c34530.chunk.js.map",
+    "main.js": "/react-cakes/static/js/main.3ecd47dd.chunk.js",
+    "main.js.map": "/react-cakes/static/js/main.3ecd47dd.chunk.js.map",
     "runtime-main.js": "/react-cakes/static/js/runtime-main.e0c8bec8.js",
     "runtime-main.js.map": "/react-cakes/static/js/runtime-main.e0c8bec8.js.map",
-    "static/js/2.e36698d2.chunk.js": "/react-cakes/static/js/2.e36698d2.chunk.js",
-    "static/js/2.e36698d2.chunk.js.map": "/react-cakes/static/js/2.e36698d2.chunk.js.map",
+    "static/js/2.68e7f197.chunk.js": "/react-cakes/static/js/2.68e7f197.chunk.js",
+    "static/js/2.68e7f197.chunk.js.map": "/react-cakes/static/js/2.68e7f197.chunk.js.map",
     "index.html": "/react-cakes/index.html",
     "static/css/main.b9554799.chunk.css.map": "/react-cakes/static/css/main.b9554799.chunk.css.map",
-    "static/js/2.e36698d2.chunk.js.LICENSE.txt": "/react-cakes/static/js/2.e36698d2.chunk.js.LICENSE.txt",
+    "static/js/2.68e7f197.chunk.js.LICENSE.txt": "/react-cakes/static/js/2.68e7f197.chunk.js.LICENSE.txt",
     "static/media/style.css": "/react-cakes/static/media/DanaYadAlefAlefAlef-Normal.c6c75129.otf",
     "static/media/cake.23c32308.svg": "/react-cakes/static/media/cake.23c32308.svg",
     "static/media/cart.2b695a24.svg": "/react-cakes/static/media/cart.2b695a24.svg",
@@ -18,8 +18,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.e0c8bec8.js",
-    "static/js/2.e36698d2.chunk.js",
+    "static/js/2.68e7f197.chunk.js",
     "static/css/main.b9554799.chunk.css",
-    "static/js/main.99c34530.chunk.js"
+    "static/js/main.3ecd47dd.chunk.js"
   ]
 }
