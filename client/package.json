@@ -32,10 +32,11 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "import-sort-style-module": "^6.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@types/react-router-dom": "^5.1.8",
-    "react-scripts": "latest",
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "react-scripts": "latest"
   },
   "browserslist": {
     "production": [

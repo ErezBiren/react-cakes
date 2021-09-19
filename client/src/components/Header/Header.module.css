@@ -1,0 +1,38 @@
+.header_container {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: auto;
+}
+.header {
+  min-height: 8vh;
+  background-color: white;
+  transition: 0.3s ease background-color;
+  border-bottom: 1px solid rgb(245, 244, 244);
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.other {
+  position: absolute;
+  width: 100%;
+  text-align: start;
+  margin: auto;
+  position: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index:-1;
+}
+
+.cartIcon {
+  margin-left: 100px;
+}
+
+.login {
+  align-items: center;
+  display: flex;
+  margin-right: 120px;
+}

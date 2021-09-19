@@ -1,13 +1,8 @@
-import styles from "./Home.module.css";
-import mainCakeSrc from "../assets/mainCake.jpeg";
-
+import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as CakeIcon } from "../assets/icons/cake.svg";
-
-import CakeForm from "./CakeForm";
-import { authActions } from "../store/auth-Slice";
-import { useSelector, useDispatch } from "react-redux";
-import { cakesActions } from "../store/cakes-Slice";
+import mainCakeSrc from "../assets/mainCake.jpeg";
 import { RootState } from "../store/store";
+import styles from "./Home.module.css";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -32,7 +27,7 @@ export default function HomePage() {
 
         <div className={styles.main_cake_container}>
           {/* <div class="home_main_cake_fade_effect"></div> */}
-          <img className={styles.main_cake} src={mainCakeSrc}/>
+          <img className={styles.main_cake} src={mainCakeSrc} />
         </div>
       </div>
     </section>

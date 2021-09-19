@@ -1,6 +1,7 @@
-import styles from "./About.module.css";
+import Typography from "@material-ui/core/Typography";
+
 import myImgSrc from "../assets/me.jpg";
-import Typography from "@material-ui/core/Typography"; 
+import styles from "./About.module.css";
 
 const About = () => {
   return (
@@ -14,7 +15,7 @@ const About = () => {
             </Typography> */}
           <h2>עדי גיבלי</h2>
           <p>
-          {/* <Typography variant="body1" gutterBottom> */}
+            {/* <Typography variant="body1" gutterBottom> */}
             בזמן הפנוי שלי אני מאוד אוהבת לאפות ולבשל, בשבילי זה תרפיה. אני מאוד
             אוהבת לארח ולעמוד במטבח. הבן שלי נדבק בחיידק המטבח ואוהב מאוד לבשל,
             להתנסות ולהמציא כל מיני מאכלים. בנוסף, אני לוקחת חלק בפרויקט בשם

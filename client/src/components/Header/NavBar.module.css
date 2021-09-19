@@ -1,0 +1,60 @@
+.navBar nav ul li {
+  display: inline-block;
+  margin: 1.5vw;
+}
+
+.navBar nav ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.navBar nav ul li:hover a {
+  color: var(--secondColor);
+}
+
+.navBar .mobileNavigation .hamburger {
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  cursor: pointer;
+}
+
+.navBar .navigation {
+  display: none;
+}
+
+/* Media Query For Tablet */
+@media only screen and (min-width: 768px) {
+  .navBar .mobileNavigation {
+    display: none;
+  }
+
+  .navBar .navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .navBar nav ul li a {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    padding: 20px;
+    display: block;
+  }
+
+  .navBar nav ul li:hover a::after {
+    transform: translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+  }
+  .navBar nav ul li:hover a {
+    color: var(--secondColor);
+  }
+}
