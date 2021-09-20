@@ -13,7 +13,7 @@ const CartBottomArea = () => {
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
 
   return (
-    <div>
+    <div className={styles.root}>
       <div className={styles.totalPriceContainer}>
         <h2>סכום ביניים</h2>
         <h2>{totalPrice} ש"ח</h2>

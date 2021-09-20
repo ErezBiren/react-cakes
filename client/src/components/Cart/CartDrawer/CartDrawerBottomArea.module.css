@@ -1,3 +1,8 @@
+.root {
+  position: absolute;
+  bottom: 5%;
+}
+
 .buttonContainer {
   text-align: center;
 }
