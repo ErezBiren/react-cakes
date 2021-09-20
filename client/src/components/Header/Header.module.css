@@ -24,15 +24,10 @@
   position: flex;
   flex-direction: row;
   justify-content: space-between;
-  z-index:-1;
-}
-
-.cartIcon {
-  margin-left: 100px;
+  /* z-index:-1; */
 }
 
 .login {
   align-items: center;
   display: flex;
-  margin-right: 120px;
 }

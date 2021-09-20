@@ -7,9 +7,9 @@ const About = () => {
   return (
     <section id="about">
       <div className={`${styles.about} container`}>
-        <div className={styles.col_right}>
-          <h1 className={styles.section_title}>השפית שלנו</h1>
-          <img src={myImgSrc} className={styles.my_image}></img>
+        <div className={styles.colRight}>
+          <h1 className={styles.sectionTitle}>השפית שלנו</h1>
+          <img src={myImgSrc} className={styles.myImage}></img>
           {/* <Typography variant="h2" gutterBottom component="div">
           עדי גיבלי
             </Typography> */}

@@ -5,35 +5,37 @@
   margin: 0 auto;
   padding: 100px 20px;
 }
-.col_left {
+.colLeft {
   width: 250px;
   height: 360px;
 }
-.col_right {
+.colRight {
   width: 100%;
 }
-.col_right h2 {
+.colRight h2 {
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0.2rem;
   margin-bottom: 10px;
 }
-.col_right p {
+.colRight p {
+  margin: auto;
   margin-bottom: 20px;
+  width: 80%;
 }
-.col_right .cta {
+.colRight .cta {
   color: black;
   margin-bottom: 50px;
   padding: 10px 20px;
   font-size: 2rem;
 }
-.col_left .about-img {
+.colLeft .about-img {
   height: 100%;
   width: 100%;
   position: relative;
   border: 10px solid white;
 }
-.col_left .about-img::after {
+.colLeft .about-img::after {
   content: "";
   position: absolute;
   left: -33px;
@@ -44,7 +46,7 @@
   z-index: -1;
 }
 
-.my_image {
+.myImage {
   margin-top: 30px;
   margin-bottom: 30px;
   border-radius: 50%;
