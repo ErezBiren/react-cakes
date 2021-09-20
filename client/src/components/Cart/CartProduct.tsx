@@ -1,12 +1,15 @@
-import React from "react";
-import { cartActions } from "../../store/cart-Slice";
+import { IconButton, TextField, Tooltip } from "@material-ui/core";
+import { red } from "@material-ui/core/colors";
+import CloseIcon from "@material-ui/icons/Close";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+
+import { cartActions } from "../../store/cart-Slice";
 import { CartItemData } from "../../store/cart-Slice";
 import styles from "./CartProduct.module.css";
-import { IconButton, TextField, Tooltip } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
 
 const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
+  const [isCloseButtobVisible, setIsCloseButtobVisible] = useState(false);
   const dispatch = useDispatch();
 
   const handleQuantityChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,10 +22,22 @@ const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
     dispatch(cartActions.removeCartItem(cartItem));
   };
 
+  const handleMouseEnter = () => {
+    setIsCloseButtobVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsCloseButtobVisible(false);
+  };
+
   return (
-    <div className={styles.main}>
+    <div
+      className={styles.main}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className={styles.imageContainer}>
-        <img className={styles.image} src={cartItem.cakeData.imageSource}/>
+        <img className={styles.image} src={cartItem.cakeData.imageSource} />
       </div>
       <div className={styles.detailes}>
         <div>{cartItem.cakeData.name}</div>
@@ -39,7 +54,9 @@ const CartProduct: React.FC<{ cartItem: CartItemData }> = ({ cartItem }) => {
       </div>
       <Tooltip title="הסר פריט">
         <IconButton onClick={handleRemoveItem}>
-          <CloseIcon />
+          <CloseIcon
+            style={{ color: isCloseButtobVisible ? "gray" : "transparent" }}
+          />
         </IconButton>
       </Tooltip>
     </div>

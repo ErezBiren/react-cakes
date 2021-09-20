@@ -1,14 +1,16 @@
-import { useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import "./style.css";
-import { fetchCakeData } from "./store/cakes-actions";
+
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+
+import AdminPage from "./pages/AdminPage";
+import AuthPage from "./pages/AuthPage";
+import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
-import AuthPage from "./pages/AuthPage";
 import ProfilePage from "./pages/ProfilePage";
-import CartPage from "./pages/CartPage";
-import AdminPage from "./pages/AdminPage";
+import { fetchCakeData } from "./store/cakes-actions";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ export default function App() {
     }
   }, []);
 
- const repositoryName = 'react-cakes';
+  const repositoryName = "react-cakes";
 
   return (
     <Switch>
