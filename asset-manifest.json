@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-cakes/static/css/main.ebbab27b.chunk.css",
-    "main.js": "/react-cakes/static/js/main.86f6d829.chunk.js",
-    "main.js.map": "/react-cakes/static/js/main.86f6d829.chunk.js.map",
-    "runtime-main.js": "/react-cakes/static/js/runtime-main.e0c8bec8.js",
-    "runtime-main.js.map": "/react-cakes/static/js/runtime-main.e0c8bec8.js.map",
-    "static/js/2.ebdd70ff.chunk.js": "/react-cakes/static/js/2.ebdd70ff.chunk.js",
-    "static/js/2.ebdd70ff.chunk.js.map": "/react-cakes/static/js/2.ebdd70ff.chunk.js.map",
+    "main.js": "/react-cakes/static/js/main.db6a0def.chunk.js",
+    "main.js.map": "/react-cakes/static/js/main.db6a0def.chunk.js.map",
+    "runtime-main.js": "/react-cakes/static/js/runtime-main.8be099d3.js",
+    "runtime-main.js.map": "/react-cakes/static/js/runtime-main.8be099d3.js.map",
+    "static/js/2.97159ac7.chunk.js": "/react-cakes/static/js/2.97159ac7.chunk.js",
+    "static/js/2.97159ac7.chunk.js.map": "/react-cakes/static/js/2.97159ac7.chunk.js.map",
     "index.html": "/react-cakes/index.html",
     "static/css/main.ebbab27b.chunk.css.map": "/react-cakes/static/css/main.ebbab27b.chunk.css.map",
-    "static/js/2.ebdd70ff.chunk.js.LICENSE.txt": "/react-cakes/static/js/2.ebdd70ff.chunk.js.LICENSE.txt",
+    "static/js/2.97159ac7.chunk.js.LICENSE.txt": "/react-cakes/static/js/2.97159ac7.chunk.js.LICENSE.txt",
     "static/media/style.css": "/react-cakes/static/media/DanaYadAlefAlefAlef-Normal.c6c75129.otf",
     "static/media/cake.23c32308.svg": "/react-cakes/static/media/cake.23c32308.svg",
     "static/media/cart.2b695a24.svg": "/react-cakes/static/media/cart.2b695a24.svg",
@@ -17,9 +17,9 @@
     "static/media/me.4c864cd8.jpg": "/react-cakes/static/media/me.4c864cd8.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e0c8bec8.js",
-    "static/js/2.ebdd70ff.chunk.js",
+    "static/js/runtime-main.8be099d3.js",
+    "static/js/2.97159ac7.chunk.js",
     "static/css/main.ebbab27b.chunk.css",
-    "static/js/main.86f6d829.chunk.js"
+    "static/js/main.db6a0def.chunk.js"
   ]
 }
