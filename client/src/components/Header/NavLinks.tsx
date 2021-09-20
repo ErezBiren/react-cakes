@@ -1,27 +1,31 @@
-const NavLinks = () => {
+import React from "react";
+
+const NavLinks: React.FC<{
+  closeMobileMenu?: React.MouseEventHandler<HTMLLIElement>;
+}> = ({ closeMobileMenu }) => {
   return (
     <ul>
-      <li>
+      <li onClick={closeMobileMenu}>
         <a href="#home" data-after="Home">
           בית
         </a>
       </li>
-      <li>
+      <li onClick={closeMobileMenu}>
         <a href="#catalog" data-after="Catalog">
           קטלוג
         </a>
       </li>
-      <li>
+      <li onClick={closeMobileMenu}>
         <a href="#projects" data-after="Projects">
           סדנאות
         </a>
       </li>
-      <li>
+      <li onClick={closeMobileMenu}>
         <a href="#about" data-after="About">
           קצת עלי
         </a>
       </li>
-      <li>
+      <li onClick={closeMobileMenu}>
         <a href="#contact" data-after="Contact">
           צרו קשר
         </a>

@@ -24,10 +24,12 @@ const MobileNavigation = () => {
     </div>
   );
 
+  const closeMobileMenu = () => setOpen(false);
+
   return (
     <nav className={styles.mobileNavigation}>
       {open ? closeIcon : menuIcon}
-      {open && <NavLinks />}
+      {open && <NavLinks closeMobileMenu={closeMobileMenu} />}
     </nav>
   );
 };
