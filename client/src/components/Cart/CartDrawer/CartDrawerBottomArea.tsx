@@ -8,7 +8,7 @@ import styles from "./CartDrawerBottomArea.module.css";
 const CartBottomArea = () => {
   const history = useHistory();
   const handleViewCartClick = () => {
-    history.push("react-cakes/cart");
+    history.push("/cart");
   };
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
 

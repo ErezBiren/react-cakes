@@ -17,17 +17,17 @@ export default function HomePage() {
         </button>
         {isAdmin && <CakeForm />} */}
 
+        <div className={styles.main_cake_container}>
+          {/* <div class="home_main_cake_fade_effect"></div> */}
+          <img className={styles.main_cake} src={mainCakeSrc} />
+        </div>
+
         <div className={styles.title_container}>
           <div className={styles.title_inner_container}>
             <h1>העוגות של דידי</h1>
             {<CakeIcon className={styles.cake_icon} />}
           </div>
           <p>שיגעון של עוגות ומתוקים לכל אירוע בעיצוב אישי</p>
-        </div>
-
-        <div className={styles.main_cake_container}>
-          {/* <div class="home_main_cake_fade_effect"></div> */}
-          <img className={styles.main_cake} src={mainCakeSrc} />
         </div>
       </div>
     </section>

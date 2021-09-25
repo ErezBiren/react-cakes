@@ -23,11 +23,11 @@
   margin: auto;
   position: flex;
   flex-direction: row;
-  justify-content: space-between;
   /* z-index:-1; */
 }
 
 .login {
   align-items: center;
   display: flex;
+  justify-self: flex-start;
 }

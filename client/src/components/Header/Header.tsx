@@ -27,14 +27,12 @@ const Header = () => {
           <IconButton className={styles.cartIcon} onClick={handleCartIconClick}>
             <CartIcon />
           </IconButton>
-          <Link to="/auth">
-            {!isLoggedIn && (
-              <div className={styles.login}>
-                <AccountCircle />
-                <h2>התחברות</h2>
-              </div>
-            )}
-          </Link>
+          {!isLoggedIn && (
+            <div className={styles.login}>
+              <AccountCircle />
+              <Link to="/auth">התחברות</Link>
+            </div>
+          )}
         </div>
         <NavBar />
       </div>
