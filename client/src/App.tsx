@@ -14,6 +14,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ProfilePage from "./pages/ProfilePage";
 import { fetchCakeData } from "./store/cakes-actions";
 
+
+
 export default function App() {
   const dispatch = useDispatch();
   let isInitial = true;
@@ -26,6 +28,7 @@ export default function App() {
   }, []);
 
   return (
+
     <BrowserRouter basename="/">
       <Switch>
         <Route path="/" exact>
