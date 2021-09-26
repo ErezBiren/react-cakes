@@ -12,12 +12,19 @@
   background-color: black;
   color: white;
   width: 300px;
-  height: 100px;
+  height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .carts {
-  flex-basis: 50%;
+  height: 65vh;
+  overflow: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .carts {
+    height: 70vh;
+  }
 }

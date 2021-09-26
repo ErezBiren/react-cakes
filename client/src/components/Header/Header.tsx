@@ -1,5 +1,6 @@
 import IconButton from "@material-ui/core/IconButton";
 import { AccountCircle } from "@material-ui/icons";
+import { PersonOutlineSharp } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -32,7 +33,7 @@ const Header = () => {
 
           {!isLoggedIn && (
             <div className={styles.login}>
-              <AccountCircle />
+              <PersonOutlineSharp />
 
               <Link to="/auth">התחברות</Link>
             </div>
