@@ -9,6 +9,9 @@
   position: absolute;
   top: 50px;
   right: 0;
+  background: white;
+  padding-inline-start: 30px;
+  padding-inline-end: 30px;
 }
 
 .navBar nav ul li {

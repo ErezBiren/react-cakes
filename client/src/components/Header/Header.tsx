@@ -24,17 +24,24 @@ const Header = () => {
     <section className={styles.header_container}>
       <div className={styles.header}>
         <div className={styles.other}>
-          <IconButton className={styles.cartIcon} onClick={handleCartIconClick}>
-            <CartIcon />
-          </IconButton>
+          <div className={styles.cartIcon}>
+            <IconButton onClick={handleCartIconClick}>
+              <CartIcon />
+            </IconButton>
+          </div>
+
           {!isLoggedIn && (
             <div className={styles.login}>
               <AccountCircle />
+
               <Link to="/auth">התחברות</Link>
             </div>
           )}
         </div>
-        <NavBar />
+
+        <div className={styles.navBar}>
+          <NavBar />
+        </div>
       </div>
     </section>
   );

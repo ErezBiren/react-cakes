@@ -6,7 +6,8 @@
 .cartIcon {
   width: 45;
   height: 45;
-  position: absolute;
+  align-self: flex-end;
+  justify-self: flex-end;
 }
 
 .totalQuantity {
