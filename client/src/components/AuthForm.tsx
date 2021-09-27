@@ -1,9 +1,8 @@
-import { IconButton, InputAdornment } from "@material-ui/core";
+import { Box, IconButton, InputAdornment } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -16,12 +15,13 @@ import {
   VisibilityOff,
 } from "@material-ui/icons";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import React, { ChangeEvent, SyntheticEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { authActions } from "../store/auth-Slice";
 import styles from "./AuthForm.module.css";
+import ResetPassword from "./ResetPassword";
 
 //import FacebookLogin from "react-facebook-login";
 
@@ -48,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
 const AuthForm = () => {
   const classes = useStyles();
   const history = useHistory();
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const [data, setData] = useState({
     email: "",
@@ -125,8 +129,6 @@ const AuthForm = () => {
       [e.target.name]: e.target.value,
       [e.target.name + "Filled"]: e.target.value,
     });
-
-    console.log(data);
   };
 
   const handleClickShowPassword = () => {
@@ -227,7 +229,13 @@ const AuthForm = () => {
           }}
         />
 
-        <Link href="#" align="left" display="block" variant="body2">
+        <Link
+          href="#"
+          align="left"
+          display="block"
+          variant="body2"
+          onClick={handleOpen}
+        >
           שכחתי סיסמא
         </Link>
 
@@ -257,6 +265,8 @@ const AuthForm = () => {
         onClick={componentClicked}
         callback={responseFacebook}
       /> */}
+
+      <ResetPassword open={open} handleClose={handleClose} />
     </section>
   );
 };
