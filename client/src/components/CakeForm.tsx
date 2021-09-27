@@ -50,7 +50,7 @@ export default function CakeForm() {
     });
   };
 
-  const handleSumbit = (e: SyntheticEvent) => {
+  const handleSumbit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (cakeData.id) {

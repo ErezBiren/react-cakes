@@ -1,19 +1,20 @@
-import { useState, useRef, SyntheticEvent } from "react";
-import { authActions } from "../store/auth-Slice";
-import styles from "./AuthForm.module.css";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import React, { ChangeEvent, SyntheticEvent, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography"; 
-import Checkbox from "@material-ui/core/Checkbox"; 
 
-import Grid from "@material-ui/core/Grid";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { authActions } from "../store/auth-Slice";
+import styles from "./AuthForm.module.css";
+
 //import FacebookLogin from "react-facebook-login";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,8 +40,12 @@ const useStyles = makeStyles((theme) => ({
 const AuthForm = () => {
   const classes = useStyles();
   const history = useHistory();
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
+
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
   const dispatch = useDispatch();
 
   const [isLogin, setIsLogin] = useState(true);
@@ -50,31 +55,26 @@ const AuthForm = () => {
     setIsLogin((prevState) => !prevState);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-
-    console.log(enteredEmail);
-    console.log(enteredPassword);
+    console.log(data.email);
+    console.log(data.password);
 
     // optional: Add validation
 
     setIsLoading(true);
     let url;
     if (isLogin) {
-      url =
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}` ;
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}`;
     } else {
-      url =
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}`;
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}`;
     }
     fetch(url, {
       method: "POST",
       body: JSON.stringify({
-        email: enteredEmail,
-        password: enteredPassword,
+        email: data.email,
+        password: data.password,
         returnSecureToken: true,
       }),
       headers: {
@@ -115,13 +115,18 @@ const AuthForm = () => {
       });
   };
 
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   return (
     <section className={styles.auth}>
       <form onSubmit={submitHandler} className={classes.form} noValidate>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-
+        <div>
+          <Avatar>
+            <LockOutlinedIcon />
+          </Avatar>
+        </div>
         <Typography component="h1" variant="h5">
           {isLogin ? "התחברות" : "הרשמה"}
         </Typography>
@@ -136,6 +141,7 @@ const AuthForm = () => {
           name="email"
           autoComplete="email"
           autoFocus
+          onChange={handleChange}
         />
         <TextField
           variant="outlined"
@@ -147,6 +153,7 @@ const AuthForm = () => {
           type="password"
           id="password"
           autoComplete="current-password"
+          onChange={handleChange}
         />
 
         <div className={styles.actions}>
@@ -172,7 +179,7 @@ const AuthForm = () => {
           </button>
           <div className={styles.passLabels}>
             <label htmlFor="password">סיסמא</label>
-            <Link to="/password_reset">שכחת סיסמא? </Link>
+            <Link href="#">שכחת סיסמא? </Link>
           </div>
         </div>
         <Grid container>
