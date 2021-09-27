@@ -13,6 +13,8 @@ import {
 } from "@material-ui/icons";
 import { ChangeEvent, useState } from "react";
 
+import { sendResetPassword } from "../Services/googleAPI";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -20,23 +22,26 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  borderRadius: 10,
   boxShadow: 24,
   p: 4,
 };
 
 // todo: fix the any
-const ResetPassword: React.FC<{ open: boolean; handleClose: any }> = ({
-  open,
-  handleClose,
-}) => {
+const ResetPassword: React.FC<{
+  open: boolean;
+  handleClose: any;
+  handleResetSent: any;
+}> = ({ open, handleClose, handleResetSent }) => {
   const [data, setData] = useState({
     email: "",
     emailFilled: false,
   });
 
   const handleResetPass = () => {
-    // todo :call google api for reset password
+    sendResetPassword(data.email).then(() => {
+      handleResetSent();
+    });
   };
 
   const ClearEmail = (e: React.MouseEvent<HTMLButtonElement>) => {

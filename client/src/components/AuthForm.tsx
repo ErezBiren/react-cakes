@@ -19,9 +19,11 @@ import React, { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { signIn, signUp } from "../Services/googleAPI";
 import { authActions } from "../store/auth-Slice";
 import styles from "./AuthForm.module.css";
 import ResetPassword from "./ResetPassword";
+import ResetPasswordSent from "./ResetPasswordSent";
 
 //import FacebookLogin from "react-facebook-login";
 
@@ -49,9 +51,18 @@ const AuthForm = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openResetPassword, setOpenResetPassword] = React.useState(false);
+  const handleOpenResetPassword = () => setOpenResetPassword(true);
+  const handleCloseResetPassword = () => setOpenResetPassword(false);
+
+  const [openResetPasswordSent, setOpenResetPasswordSent] =
+    React.useState(false);
+  const handleCloseResetPasswordSent = () => setOpenResetPasswordSent(false);
+
+  const handleResetSent = () => {
+    handleCloseResetPassword();
+    setOpenResetPasswordSent(true);
+  };
 
   const [data, setData] = useState({
     email: "",
@@ -66,61 +77,23 @@ const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
+  const validateEmail = (email: string) => {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // optional: Add validation
 
     setIsLoading(true);
-    let url;
+
     if (isLogin) {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}`;
+      signIn(data.email, data.password);
     } else {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}`;
+      signUp(data.email, data.password);
     }
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify({
-        email: data.email,
-        password: data.password,
-        returnSecureToken: true,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        setIsLoading(false);
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = "Authentication failed!";
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-
-            console.log(errorMessage);
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        console.log(data.idToken);
-        const isAdmin =
-          JSON.parse(atob(data.idToken.split(".")[1])).account[0].role ===
-          "admin";
-
-        //
-        console.log("isAdmin=" + isAdmin);
-
-        localStorage.setItem("token", data.idToken);
-        dispatch(authActions.login(data.idToken));
-        history.replace("/");
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
   };
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -234,7 +207,7 @@ const AuthForm = () => {
           align="left"
           display="block"
           variant="body2"
-          onClick={handleOpen}
+          onClick={handleOpenResetPassword}
         >
           שכחתי סיסמא
         </Link>
@@ -266,7 +239,15 @@ const AuthForm = () => {
         callback={responseFacebook}
       /> */}
 
-      <ResetPassword open={open} handleClose={handleClose} />
+      <ResetPassword
+        open={openResetPassword}
+        handleClose={handleCloseResetPassword}
+        handleResetSent={handleResetSent}
+      />
+      <ResetPasswordSent
+        open={openResetPasswordSent}
+        handleClose={handleCloseResetPasswordSent}
+      />
     </section>
   );
 };
