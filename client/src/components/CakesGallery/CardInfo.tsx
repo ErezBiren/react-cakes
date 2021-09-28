@@ -4,10 +4,13 @@ import styles from "./CardInfo.module.css";
 
 const CardInfo: React.FC<{ cakeData: CakeData }> = ({ cakeData }) => {
   return (
-    <div className={styles.card_info}>
-      <h2> {cakeData.name} </h2>
-      {<h4> {cakeData.description} </h4>}
-      <BuyArea cakeData={cakeData} />
+    <div className={styles.cardInfo}>
+      <h3> {cakeData.name} </h3>
+      <h4> {cakeData.description} </h4>
+
+      <div className={styles.buyArea}>
+        <BuyArea cakeData={cakeData} />
+      </div>
     </div>
   );
 };

@@ -1,20 +1,19 @@
-.buyArea_container {
+.container {
   display: flex;
-  margin-top: 25px;
+  justify-content: center;
 }
 
-.buyArea_container > button {
+.container > button {
   background-color: var(--pink);
-  height: 25px;
+  height: 30px;
   border: none;
   color: white;
-  font-size: 16px;
+  font-size: 1rem;
   cursor: pointer;
-  border-radius: 20px;
-  justify-content: space-around;
-  margin-right: 20px;
+  border-radius: 16px;
+  margin-right: 20px ;
 }
 
-.buyArea_container > h3 {
+.container > h3 {
   color: var(--pink);
 }

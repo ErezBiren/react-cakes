@@ -9,7 +9,7 @@ export default function CakesGallery() {
 
   return (
     <section id="Catalog">
-      <div className={`${styles.CakesGallery_container} container`}>
+      <div className={`${styles.CakesGalleryContainer} container`}>
         {cakes &&
           cakes.map(({ id, name, price, imageSource, description }) => (
             <CakeCard

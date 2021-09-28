@@ -1,18 +1,21 @@
-.card_info {
-  margin-right: 15px;
+.cardInfo {
+  margin: 15px;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.card_info > h2,
-h3,
+.cardInfo > h3,
 h4 {
-  text-align: right;
+  /* text-align: right; */
 }
 
-.card_info > h2 {
-  margin-top: 10px;
-}
-
-.card_info > h4 {
-  margin-top: 5px;
+.cardInfo > h4 {
+  /* margin-top: 10px; */
   color: rgb(192, 189, 189);
+}
+
+.buyArea {
+  justify-self: flex-end;
 }

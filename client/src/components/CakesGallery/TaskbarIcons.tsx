@@ -15,7 +15,7 @@ const TaskbarIcons: React.FC<{cakeId: string}> = ({cakeId}) => {
   // };
 
   return (
-    <div className="taskbar_contianer">
+    <div className="taskbarContianer">
       {/* <DeleteIcon htmlColor="pink" onClick={handleDelete} cursor="pointer" />
       <EditIcon
         htmlColor="pink"

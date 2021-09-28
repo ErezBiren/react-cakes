@@ -35,7 +35,7 @@ const Header = () => {
   };
 
   return (
-    <section className={styles.header_container}>
+    <section className={styles.headerContainer}>
       <div className={styles.header}>
         <div className={styles.other}>
           <div className={styles.cartIcon}>

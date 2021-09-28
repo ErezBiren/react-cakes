@@ -1,4 +1,4 @@
-.CakesGallery_container {
+.CakesGalleryContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,7 @@
 
 /* Media Query For Tablet */
 @media only screen and (min-width: 481px) {
-  .CakesGallery_container {
+  .CakesGalleryContainer {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-content: center;
