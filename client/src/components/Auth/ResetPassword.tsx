@@ -13,8 +13,8 @@ import {
 } from "@material-ui/icons";
 import { ChangeEvent, useState } from "react";
 
-import { sendResetPassword } from "../Services/googleAPI";
-import { validateEmail } from "../Services/Validations";
+import { sendResetPassword } from "../../Services/googleAPI";
+import { validateEmail } from "../../Services/Validations";
 
 const style = {
   position: "absolute",

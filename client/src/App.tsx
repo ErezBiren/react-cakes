@@ -46,10 +46,6 @@ export default function App() {
             <HomePage />
           </Route>
 
-          <Route path="/auth">
-            <AuthPage />
-          </Route>
-
           <Route path="/admin">
             <AdminPage />
           </Route>

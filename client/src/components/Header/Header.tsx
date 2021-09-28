@@ -1,26 +1,27 @@
 import IconButton from "@material-ui/core/IconButton";
+import Link from "@material-ui/core/Link";
 import Menu from "@material-ui/core/Menu";
-import { AccountCircle } from "@material-ui/icons";
 import { PersonOutlineSharp } from "@material-ui/icons";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { cartActions } from "../../store/cart-Slice";
 import { RootState } from "../../store/store";
-import AuthForm from "../AuthForm";
+import AuthForm from "../Auth/AuthForm";
 import CartIcon from "../Cart/CartIcon";
 import styles from "./Header.module.css";
 import NavBar from "./NavBar";
 
 const Header = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(
+    null
+  );
+  const open = Boolean(menuAnchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+    setMenuAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    setAnchorEl(null);
+    setMenuAnchorEl(null);
   };
 
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
@@ -48,7 +49,11 @@ const Header = () => {
               <IconButton onClick={handleClick}>
                 <PersonOutlineSharp />
               </IconButton>
-              { <Link to="/auth" >כניסה</Link> }
+              {
+                <Link href="#" onClick={() => handleClick}>
+                  כניסה
+                </Link>
+              }
             </div>
           )}
         </div>
@@ -60,7 +65,7 @@ const Header = () => {
 
       <Menu
         id="basic-menu"
-        anchorEl={anchorEl}
+        anchorEl={menuAnchorEl}
         open={open}
         onClose={handleClose}
         MenuListProps={{

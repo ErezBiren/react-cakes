@@ -14,14 +14,11 @@ import {
   Visibility,
   VisibilityOff,
 } from "@material-ui/icons";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import React, { ChangeEvent, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { validateEmail } from "./../Services/Validations";
-import { signIn, signUp } from "../Services/googleAPI";
-import { authActions } from "../store/auth-Slice";
+import { validateEmail } from "../../Services/Validations";
+import { signIn, signUp } from "../../Services/googleAPI";
 import styles from "./AuthForm.module.css";
 import ResetPassword from "./ResetPassword";
 import ResetPasswordSent from "./ResetPasswordSent";
@@ -50,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 
 const AuthForm: React.FC<{ handleClose: any }> = ({ handleClose }) => {
   const classes = useStyles();
-  const history = useHistory();
 
   const [openResetPassword, setOpenResetPassword] = React.useState(false);
   const handleOpenResetPassword = () => setOpenResetPassword(true);
