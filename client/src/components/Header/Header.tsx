@@ -67,7 +67,7 @@ const Header = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <AuthForm />
+        <AuthForm handleClose={handleClose} />
       </Menu>
     </section>
   );

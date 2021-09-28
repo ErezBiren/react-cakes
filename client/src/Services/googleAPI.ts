@@ -18,7 +18,6 @@ export const signIn = (email: string, password: string) => {
         },
     })
         .then((res) => {
-            //setIsLoading(false);
             if (res.ok) {
                 return res.json();
             } else {
@@ -34,6 +33,8 @@ export const signIn = (email: string, password: string) => {
             }
         })
         .then((data) => {
+            console.clear();
+            console.log(data.idToken.split(".")[1].account);
             console.log(data.idToken);
             const isAdmin =
                 JSON.parse(atob(data.idToken.split(".")[1])).account[0].role ===

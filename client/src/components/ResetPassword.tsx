@@ -14,6 +14,7 @@ import {
 import { ChangeEvent, useState } from "react";
 
 import { sendResetPassword } from "../Services/googleAPI";
+import { validateEmail } from "../Services/Validations";
 
 const style = {
   position: "absolute",
@@ -35,6 +36,7 @@ const ResetPassword: React.FC<{
 }> = ({ open, handleClose, handleResetSent }) => {
   const [data, setData] = useState({
     email: "",
+    emailError: "שדה חובה",
     emailFilled: false,
   });
 
@@ -53,10 +55,18 @@ const ResetPassword: React.FC<{
   };
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    let error = "";
+    if (e.target.name === "email") {
+      if (!validateEmail(e.target.value)) {
+        error = "כתובת דואר לא חוקית";
+      }
+    }
+
     setData({
       ...data,
       [e.target.name]: e.target.value,
       [e.target.name + "Filled"]: e.target.value,
+      [e.target.name + "Error"]: error,
     });
   };
 
@@ -78,6 +88,8 @@ const ResetPassword: React.FC<{
 
         <TextField
           value={data.email}
+          error={data.emailError.length !== 0}
+          helperText={data.emailError}
           variant="outlined"
           margin="normal"
           required

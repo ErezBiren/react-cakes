@@ -19,6 +19,7 @@ import React, { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { validateEmail } from "./../Services/Validations";
 import { signIn, signUp } from "../Services/googleAPI";
 import { authActions } from "../store/auth-Slice";
 import styles from "./AuthForm.module.css";
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AuthForm = () => {
+const AuthForm: React.FC<{ handleClose: any }> = ({ handleClose }) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -66,6 +67,7 @@ const AuthForm = () => {
 
   const [data, setData] = useState({
     email: "",
+    emailError: "שדה חובה",
     password: "",
     showPassword: false,
     emailFilled: false,
@@ -77,16 +79,8 @@ const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
-  const validateEmail = (email: string) => {
-    var re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
-
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    // optional: Add validation
-
     setIsLoading(true);
 
     if (isLogin) {
@@ -97,10 +91,18 @@ const AuthForm = () => {
   };
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    let error = "";
+    if (e.target.name === "email") {
+      if (!validateEmail(e.target.value)) {
+        error = "כתובת דואר לא חוקית";
+      }
+    }
+
     setData({
       ...data,
       [e.target.name]: e.target.value,
       [e.target.name + "Filled"]: e.target.value,
+      [e.target.name + "Error"]: error,
     });
   };
 
@@ -130,17 +132,17 @@ const AuthForm = () => {
   return (
     <section className={styles.auth}>
       <form onSubmit={submitHandler} className={classes.form} noValidate>
-        <div>
-          <Avatar>
-            <LockOutlinedIcon />
-          </Avatar>
-        </div>
+        <IconButton onClick={handleClose}>
+          <ClearIcon />
+        </IconButton>
         <Typography component="h1" variant="h5">
           {isLogin ? "התחברות" : "הרשמה"}
         </Typography>
 
         <TextField
           value={data.email}
+          error={data.emailError.length !== 0}
+          helperText={data.emailError}
           variant="outlined"
           margin="normal"
           required
