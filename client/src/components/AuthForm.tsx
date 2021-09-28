@@ -74,19 +74,31 @@ const AuthForm: React.FC<{ handleClose: any }> = ({ handleClose }) => {
     passwordFilled: false,
   });
 
-  const dispatch = useDispatch();
-
-  const [isLogin, setIsLogin] = useState(true);
+  const [isSignIn, setIsSignIn] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
-  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  function handleSignUpErrors(error: string) {
+    console.log("1");
+    console.log(error);
+
+    if (error === "EMAIL_EXISTS") {
+      console.log("2");
+
+      setData({
+        ...data,
+        emailError: "בלה בלה",
+      });
+    }
+  }
+
+  const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
 
-    if (isLogin) {
+    if (isSignIn) {
       signIn(data.email, data.password);
     } else {
-      signUp(data.email, data.password);
+      let error = await signUp(data.email, data.password, handleSignUpErrors);
     }
   };
 
@@ -136,7 +148,7 @@ const AuthForm: React.FC<{ handleClose: any }> = ({ handleClose }) => {
           <ClearIcon />
         </IconButton>
         <Typography component="h1" variant="h5">
-          {isLogin ? "התחברות" : "הרשמה"}
+          {isSignIn ? "התחברות" : "הרשמה"}
         </Typography>
 
         <TextField
@@ -204,15 +216,17 @@ const AuthForm: React.FC<{ handleClose: any }> = ({ handleClose }) => {
           }}
         />
 
-        <Link
-          href="#"
-          align="left"
-          display="block"
-          variant="body2"
-          onClick={handleOpenResetPassword}
-        >
-          שכחתי סיסמא
-        </Link>
+        {!signIn && (
+          <Link
+            href="#"
+            align="left"
+            display="block"
+            variant="body2"
+            onClick={handleOpenResetPassword}
+          >
+            שכחתי סיסמא
+          </Link>
+        )}
 
         <FormControlLabel
           control={<Checkbox value="remember" color="primary" />}
@@ -226,12 +240,14 @@ const AuthForm: React.FC<{ handleClose: any }> = ({ handleClose }) => {
             color="primary"
             className={classes.submit}
           >
-            {isLogin ? "כניסה" : "הרשמה"}
+            {isSignIn ? "כניסה" : "הרשמה"}
           </Button>
         </div>
-        <Link href="#" variant="body2">
-          {"לא רשומים? להרשמה מהירה"}
-        </Link>
+        {isSignIn && (
+          <Link href="#" variant="body2" onClick={() => setIsSignIn(false)}>
+            {"לא רשומים? להרשמה מהירה"}
+          </Link>
+        )}
       </form>
       {/* <FacebookLogin
         appId="1088597931155576"

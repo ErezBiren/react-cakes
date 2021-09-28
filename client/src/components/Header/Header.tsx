@@ -48,7 +48,7 @@ const Header = () => {
               <IconButton onClick={handleClick}>
                 <PersonOutlineSharp />
               </IconButton>
-              {/* <Link to="/auth" >התחברות</Link> */}
+              { <Link to="/auth" >כניסה</Link> }
             </div>
           )}
         </div>

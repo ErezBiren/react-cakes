@@ -36,6 +36,8 @@
 }
 
 .cartIcon {
+  align-items: center;
+  display: flex;
 }
 
 .login {

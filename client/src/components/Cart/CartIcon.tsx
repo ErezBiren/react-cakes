@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+
 import { ReactComponent as Icon } from "../../assets/icons/cart.svg";
 import { RootState } from "../../store/store";
 import styles from "./CartIcon.module.css";
@@ -10,9 +11,8 @@ function CartIcon() {
 
   return (
     <div className={styles.container}>
-      {/* todo:erez width height to css */}
-      <Icon className={styles.cartIcon} width="35" height="35" />
       <div className={styles.totalQuantity}>{totalQuantity}</div>
+      <Icon className={styles.cartIcon} width="35" height="35" />
     </div>
   );
 }

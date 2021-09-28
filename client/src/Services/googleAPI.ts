@@ -1,7 +1,4 @@
-
-
-
-
+import { StringMappingType } from "typescript";
 
 export const signIn = (email: string, password: string) => {
     let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}`;
@@ -44,7 +41,7 @@ export const signIn = (email: string, password: string) => {
             console.log("isAdmin=" + isAdmin);
 
             localStorage.setItem("token", data.idToken);
-            // dispatch(authActions.login(data.idToken));
+            //dispatch(authActions.login(data.idToken));
             // history.replace("/");
         })
         .catch((err) => {
@@ -52,7 +49,7 @@ export const signIn = (email: string, password: string) => {
         });
 }
 
-export const signUp = (email: string, password: string) => {
+export const signUp = (email: string, password: String, errorHander: any) => {
     let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_WEB_API_KEY}`;
 
     fetch(url, {
@@ -95,8 +92,11 @@ export const signUp = (email: string, password: string) => {
             // dispatch(authActions.login(data.idToken));
             // history.replace("/");
         })
-        .catch((err) => {
-            alert(err.message);
+        .catch((error) => {
+
+            console.log("error code " + error.code);
+
+            errorHander(error)
         });
 
 }
