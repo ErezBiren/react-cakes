@@ -30,8 +30,8 @@
 
 .navBar .mobileNavigation .hamburger {
   position: absolute;
-  right: 5%;
-  top: 15%;
+  right: 10%;
+  top: 30%;
   cursor: pointer;
 }
 
